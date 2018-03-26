@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>CryptoConverter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="./vue.js"></script>
+
+
+</head>
+
+<body>
+
+  <header>
+    <h1>CRYPTONVERTER</h1>
+    <h3>Cryptocurrency calculator & converter</h3>
+  </header>
+
+  <div class="wrapper">
+
+    <div id="converter">
+
+      <div id="textField">
+        <input v-model="message" placeholder="Enter amount">
+      </div>
+
+
+      <div id="field1">
+        <p class="labelSelect">FROM: {{ front_from_currency }}</p>
+        <select v-model="front_from_currency">
+          <option v-for="option in options">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+
+      <div class="arrow">
+        <i class="fas fa-arrow-down"></i>
+      </div>
+
+      <div id="field2">
+        <p class="labelSelect">TO: {{ front_to_currency }}</p>
+        <select v-model="front_to_currency">
+          <option v-for="option in options">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+
+      <p class="conv">The conversion is: <br> {{ conv_result }} {{ front_to_currency }}</p>
+
+
+
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="footerText">© TiC-1 APP | follow us:</i>  <a href="https://github.com/TiC-1" target="_blank"><i class="fa fa-github-square git"></i></a></p>
+  </footer>
+
+  <script src="./object.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>

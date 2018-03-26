@@ -1,0 +1,36 @@
+{
+  "name": "week7_cryptoconverter",
+  "version": "1.0.0",
+  "description": "A basic crypto currency converter",
+  "main": "index.js",
+  "scripts": {
+    "test:watch": "nodemon test/*.test.js | tap-spec",
+    "test": "istanbul cover tape test/*.test.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiC-1/Week7_cryptoconverter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TiC-1/Week7_cryptoconverter/issues"
+  },
+  "homepage": "https://github.com/TiC-1/Week7_cryptoconverter#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "env2": "^2.2.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
+    "pg": "^7.4.1"
+  },
+  "devDependencies": {
+    "istanbul": "^1.1.0-alpha.1",
+    "nodemon": "^1.17.2",
+    "supertest": "^3.0.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.9.0"
+  }
+}

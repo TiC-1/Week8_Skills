@@ -38,7 +38,8 @@ As a user I want to:
 
 - server.js
 - _public_
-  -front end team
+  - index.html
+  - main.css
 - _src_
   - router.js
   - handler.js _(could several files)_
@@ -63,8 +64,3 @@ As a user I want to:
   - content
   - like BOOLEAN
   - FOREIGN KEY (user_id) REFERENCES users (id)
-
-  ## General purpose
-  Create a login App using a database and express.
-  Our week project employs the use of cookies and jwts (using the npm module jsonwebtoken) to maintain a logged in state through different pages. Via a database, the username and password are stored and verified as correct using the bcryptjs npm module upon login.
-  Coding will be assign to 2 different teams: front-end and back-end. Development will be TDD on both client and server side.
