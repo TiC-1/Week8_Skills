@@ -1,20 +1,21 @@
 {
-  "data":
+  "name": "JS web dev",
+  "children":
   [
       {
-        "title": "Web",
+        "name": "Web",
         "tags": ["prerequisites", "bootcamp"],
         "content": "",
         "children":
         [
           {
-            "title": "HTML",
+            "name": "HTML",
             "tags": ["prerequisites", "bootcamp"],
             "content": "",
             "children": []
           },
           {
-            "title": "CSS",
+            "name": "CSS",
             "tags": ["prerequisites", "bootcamp"],
             "content": "",
             "children": []
@@ -22,13 +23,13 @@
         ]
       },
       {
-        "title": "Git",
+        "name": "Git",
         "tags": ["prerequisites", "bootcamp"],
         "content": "",
         "children":
         [
           {
-            "title": "Github",
+            "name": "Github",
             "tags": ["prerequisites", "bootcamp"],
             "content": "",
             "children": []
@@ -36,19 +37,19 @@
         ]
       },
       {
-        "title": "Command line",
+        "name": "Command line",
         "tags": ["prerequisites", "bootcamp"],
         "content": "",
         "children":
         [
           {
-            "title": "Navigation",
+            "name": "Navigation",
             "tags": ["prerequisites"],
             "content": "cd, ls, ...",
             "children": []
           },
           {
-            "title": "File control",
+            "name": "File control",
             "tags": ["prerequisites"],
             "content": "cp, mv, rm, ...",
             "children": []
