@@ -1,18 +1,21 @@
 BEGIN;
 
-DROP TABLE IF EXISTS rates, currencies;
+DROP TABLE IF EXISTS bookmarks, users;
 
-CREATE TABLE currencies (
-  id int NOT NULL,
-  name varchar(255) NOT NULL,
-  code varchar(255) NOT NULL
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255),
+  email VARCHAR(255),
+  password VARCHAR(255)
 );
 
-CREATE TABLE rates (
-  fromcurrency_id int NOT NULL,
-  tocurrency_id int NOT NULL,
-  rate float NOT NULL,
-  timestamp timestamp NOT NULL
+CREATE TABLE bookmarks (
+  user_id INTEGER NOT NULL,
+  already_known json,
+  interested_in json,
+  starred json,
+  CONSTRAINT fk_bookmarks_user_id FOREIGN KEY (user_id) REFERENCES users (id)
 );
+
 
 COMMIT;

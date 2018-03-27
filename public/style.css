@@ -1,226 +1,83 @@
-@import url('https://fonts.googleapis.com/css?family=Comfortaa:700');
-@import url('https://fonts.googleapis.com/css?family=Mina:400,700');
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,400,500,700');
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
-/* font-family: 'Comfortaa', cursive;
-font-family: 'Mina', sans-serif; */
+/* CSS reset */
 
-/* CSS RESET */
+@import 'reset.css';
+/* Import Fonts */
 
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans|Source+Code+Pro');
+body {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 18px;
 }
 
-/* HTML5 display-role reset for older browsers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Code Pro', monospace;
+}
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+.mainContainer {
+  width: 100vw;
+}
+
+header {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  min-height: 4rem;
+  background-color: #123;
+  color: #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+
+.user {
+  text-align: right;
+  margin-right: 1rem;
+}
+
+.user ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user a {
+  color: #999;
+  text-decoration: none;
+}
+
+.user a:hover {
+  color: #fff;
+}
+
+form input {
   display: block;
 }
 
-body {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote:before, blockquote:after, q:before, q:after {
-  content: '';
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* END RESET */
-
-body {
-  height: 100%;
-  min-height: 100%;
-	/* background-color: #f9f9f9; */
-	background: url("backLight.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
-
-header {
-  padding: 1.1em 1.1em;
-  background-color: #0F3334;
-	/* background-image: url("header.jpg"); */
-}
-
-h1 {
-  font-family: 'Comfortaa', cursive;
-  color: white;
-  text-align: center;
-  font-size: 1.5em;
-}
-
-h3 {
-  font-family: 'Mina', sans-serif;
-  text-align: center;
-  padding-top: 1em;
-  line-height: 1.3em;
-  color: #ecf0f1;
-}
-
-.wrapper {
-  height: 70vh;
-	margin: auto;
-  padding: 0.7em 0.7em 0.7em 0.7em;
-}
-
-.git {
-  color: white;
-}
-
-.arrow {
-	color: #0F3334;
-	text-align: center;
-	font-size: 3em;
-	padding: 0.4em 0.3em;
-}
-
-select {
-  border-color: #0F3334;
-	background-color: white;
-  width: 100%;
-	height: 2.2em;
-  font-size: 1em;
-  font-weight: 300;
-}
-
-.conv {
-	padding-top: 1em;
-	font-size: 0.8em;
-	text-align: center;
-}
-
-.labelSelect {
-	margin-bottom: 0.5em;
-}
-
-#field1 {
-  padding-top: 0.8em;
-}
-
-p, .result {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
-}
-
-#textField {
-	padding-bottom: 1.2em;
-  padding-top: 1em;
-}
-
-input {
-  background-color: #f9f9f9;
-  font-size: 1.2em;
-	padding-left: 0.5em;
-  border-color: black;
-	border-width: thin;
-	width: 95%;
-	height: 2em;
-  -webkit-border-radius: 0.3em;
-  -moz-border-radius: 0.3em;
-  border-radius: 0.3em;
-}
-
-.footerText {
-  padding-top: 1.4em;
-  text-align: center;
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 200;
-  color: white;
-}
-
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 4em;
-  background-color: #0F3334;
+  display: block;
+  width: 100vw;
+  padding: 0.5rem 1rem;
+  min-height: 2rem;
+  background-color: #123;
+  overflow: hidden;
+  color: #ddd;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
 }
 
-
-/*  MEDIA QUERY */
-
-@media screen and (min-width: 40em) {
-
-header {
-	background-color: rgba(0,0,0,0.0);
+footer a {
+  color: #999;
+  text-decoration: none;
 }
 
-h1 {
-	font-size: 3em;
-}
-
-h3 {
-	font-size: 1.5em;
-}
-
-#converter {
-	width: 40%;
-	margin: auto auto;
-}
-
-.arrow {
-	color: white;
-}
-
-body {
-	background: url("back.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-footer {
-	background-color: black;
-	height: 5em;
-}
-
-.footerText {
-	padding-top: 2em;
-	color: white;
-	font-weight: 400;
-}
-
-p, .result {
-	color: white;
-	font-weight: 300;
-}
-
-.conv {
-	font-size: 1.3em;
-}
-
-input {
-	padding-top: 0.2em;
-	width: 98%;
-}
-
+footer a:hover {
+  color: #fff;
 }
 
 /* Tree */
