@@ -1,29 +1,27 @@
 // *** VARIABLES ***
 var warning = [];
-var userEmail;
-var userPassword;
-var userName;
-var checkName = 0;
+var name;
+var email;
+var password1;
+var password2;
 
-
+getCookies();
 listenToForm();
 
 function listenToForm() {
-  console.log('Enter listenToForm function');
 
   document.getElementById("register_form").addEventListener("submit", function(event) {
-    console.log('event function');
     event.preventDefault();
     // Get name input value
-    userName = event.target.querySelectorAll("input")[0].value;
+    name = event.target.querySelectorAll("input")[0].value;
     // Get email input value
-    userEmail = event.target.querySelectorAll("input")[1].value;
+    mail = event.target.querySelectorAll("input")[1].value;
     // Get password input value
-    userPassword1 = event.target.querySelectorAll("input")[2].value;
-    userPassword2 = event.target.querySelectorAll("input")[3].value;
+    password1 = event.target.querySelectorAll("input")[2].value;
+    password2 = event.target.querySelectorAll("input")[3].value;
 
     // Display login warning message
-    displayLoginWarning(userName, userEmail, userPassword1, userPassword2);
+    displayLoginWarning(name, mail, password1, password2);
     if (warning.length == 0) {
       document.getElementById("register_form").submit();
     }
@@ -42,49 +40,38 @@ function displayLoginWarning(name, email, password1, password2) {
   } else {
     container.innerHTML = '';
   }
-  console.log(warning);
   return warning;
 }
 
 // Check some input values and add infos to user global warning message
 function buildLoginWarning(name, email, password1, password2) {
-  console.log(name, name.match(/\W/gi));
   warning = [];
-  if (name == '') {
+    if (name == '') {
     warning.push('Enter name');
   }
-  checkName += name.match(/\W/gi).length;
-  if (checkName != 0) {
-    warning.push('name must only contain letters and digits');
+  if (name.match(/\W/gi)) {
+    warning.push('Name musn\'t contain special characters (only letters and digits)');
   }
-
   if (email == '') {
     warning.push('Enter email');
   }
-
   if (email.includes(" ")) {
-    warning.push('Email musn\'t contain spaces');
+    warning.push('Email musn\'t contain space');
   }
-
   if (!email.includes("@")) {
     warning.push('Email must contain @');
   }
-
   if (!email.includes(".")) {
-    warning.push('Email must contain .');
+    warning.push('Email must contain a dot');
   }
-
   if (password1 == '') {
     warning.push('Enter password');
   }
-  if (password1 != '' && password1.length < 6) {
-    warning.push('Password must be at least 6 characters');
+  if (password1 != '' && (password1.length < 6 || password1.length >20)) {
+    warning.push('Password length must be between 6 and 20 characters');
   }
-
   if (password1 != password2) {
-    warning.push('Password doesn\'t match');
-
+    warning.push('Passwords don\'t match');
   }
-  console.log(warning);
   return warning;
 }

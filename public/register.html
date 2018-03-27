@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Javascript Skills Login</title>
+  <title>Register | Javascript Web Dev Skills</title>
   <meta name="description" content="Our week 8 project">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
@@ -15,16 +15,17 @@
 
     <header id="header" class="header">
       <h1 class="headerTitle"></h1>
+      <div id="user">
+      </div>
     </header>
+
     <section class="content">
 
-
       <div id="message" class="message">
-
       </div>
 
       <section id="register_section" class="register_section">
-        <form id="register_form" class="register_form" action="/signup" method="post" novalidate>
+        <form id="register_form" class="register_form" action="/register" method="post" novalidate>
           <label for="name">Your name</label>
           <input type="name" id="name" name="name" value="" placeholder="">
           <label for="email">Your email</label>
@@ -33,26 +34,22 @@
           <input type="password" id="password1" name="password1" value="" placeholder="">
           <label for="password">Verify password</label>
           <input type="password" id="password2" name="password2" value="" placeholder="">
-
           <input type="submit" role="button" class="login_button" name="" value="Sign Up">
         </form>
         <a href="login.html">Already have an account?</a>
-
       </section>
 
     </section>
 
     <footer id="footer" class="footer">
-      <p><a href="http://www.turnintocoders.it/en/">Turn into Coders</a> Javascript bootcamp
-        <p>
+      <p><a href="http://www.turnintocoders.it/en/">Turn into Coders</a> Javascript bootcamp</p>
     </footer>
 
   </section>
-  <script src="js/genericFunctions.js"></script>
 
-
+  <script src="js/token.js"></script>
+  <script src="js/shared.js"></script>
   <script src="js/register.js"></script>
-
 
 </body>
 
