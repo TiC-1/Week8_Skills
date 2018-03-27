@@ -20,6 +20,7 @@ As a user I want to:
 ## User mapping
 
 ## Wireframe
+![img_2314](https://user-images.githubusercontent.com/19515855/37901727-7b3d21d2-30f2-11e8-80e1-2378edf1aeb2.JPG)
 
 ## Setup 💻
 - clone Repo

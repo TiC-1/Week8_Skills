@@ -1,0 +1,65 @@
+{
+  "name": "JS web dev",
+  "children": [{
+      "id": 1,
+      "name": "Web",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [{
+          "id": 2,
+          "name": "HTML",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
+          "children": []
+        },
+        {
+          "id": 3,
+          "name": "CSS",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
+          "children": [{
+            "id": 9,
+            "name": "CSS preprocessor",
+            "tags": [],
+            "content": "",
+            "children": []
+          }]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Git",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [{
+        "id": 5,
+        "name": "Github",
+        "tags": ["prerequisites", "bootcamp"],
+        "content": "",
+        "children": []
+      }]
+    },
+    {
+      "id": 6,
+      "name": "Command line",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [{
+          "id": 7,
+          "name": "Navigation",
+          "tags": ["prerequisites"],
+          "content": "cd, ls, ...",
+          "children": []
+        },
+        {
+          "id": 8,
+          "name": "File control",
+          "tags": ["prerequisites"],
+          "content": "cp, mv, rm, ...",
+          "children": []
+        }
+      ]
+    }
+  ]
+}
