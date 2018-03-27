@@ -1,46 +1,38 @@
 {
   "name": "JS web dev",
-  "children":
-  [
-      {
-        "name": "Web",
-        "tags": ["prerequisites", "bootcamp"],
-        "content": "",
-        "children":
-        [
-          {
-            "name": "HTML",
-            "tags": ["prerequisites", "bootcamp"],
-            "content": "",
-            "children": []
-          },
-          {
-            "name": "CSS",
-            "tags": ["prerequisites", "bootcamp"],
-            "content": "",
-            "children": []
-          }
-        ]
-      },
-      {
-        "name": "Git",
-        "tags": ["prerequisites", "bootcamp"],
-        "content": "",
-        "children":
-        [
-          {
-            "name": "Github",
-            "tags": ["prerequisites", "bootcamp"],
+  "children": [{
+      "id": 1,
+      "name": "Web",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [{
+          "id": 2,
+          "name": "HTML",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
+          "children": []
+        },
+        {
+          "id": 3,
+          "name": "CSS",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
+          "children": [{
+            "id": 9,
+            "name": "CSS preprocessor",
+            "tags": [],
             "content": "",
             "children":
             [
                 {
+                  "id": 10,
                   "name": "PR",
                   "tags": ["prerequisites", "bootcamp"],
                   "content": "",
                   "children": []
                 },
                 {
+                  "id": 11,
                   "name": "Issues",
                   "tags": ["prerequisites", "bootcamp"],
                   "content": "",
@@ -51,18 +43,21 @@
         ]
       },
       {
+        "id": 12,
         "name": "Command line",
         "tags": ["prerequisites", "bootcamp"],
         "content": "",
         "children":
         [
           {
+            "id": 13,
             "name": "Navigation",
             "tags": ["prerequisites"],
             "content": "cd, ls, ...",
             "children": []
           },
           {
+            "id": 14,
             "name": "File control",
             "tags": ["prerequisites"],
             "content": "cp, mv, rm, ...",
@@ -71,72 +66,62 @@
         ]
       },
       {
+        "id": 15,
         "name": "Web",
         "tags": ["prerequisites", "bootcamp"],
         "content": "",
         "children":
         [
           {
+            "id": 16,
             "name": "HTML",
             "tags": ["prerequisites", "bootcamp"],
             "content": "",
             "children": []
           },
           {
+            "id": 17,
             "name": "CSS",
             "tags": ["prerequisites", "bootcamp"],
             "content": "",
             "children": []
-          }
-        ]
-      },
-      {
-        "name": "Git",
+          }]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Git",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [{
+        "id": 5,
+        "name": "Github",
         "tags": ["prerequisites", "bootcamp"],
         "content": "",
-        "children":
-        [
-          {
-            "name": "Github",
-            "tags": ["prerequisites", "bootcamp"],
-            "content": "",
-            "children":
-            [
-                {
-                  "name": "PR",
-                  "tags": ["prerequisites", "bootcamp"],
-                  "content": "",
-                  "children": []
-                },
-                {
-                  "name": "Issues",
-                  "tags": ["prerequisites", "bootcamp"],
-                  "content": "",
-                  "children": []
-                }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Command line",
-        "tags": ["prerequisites", "bootcamp"],
-        "content": "",
-        "children":
-        [
-          {
-            "name": "Navigation",
-            "tags": ["prerequisites"],
-            "content": "cd, ls, ...",
-            "children": []
-          },
-          {
-            "name": "File control",
-            "tags": ["prerequisites"],
-            "content": "cp, mv, rm, ...",
-            "children": []
-          }
-        ]
-      }
+        "children": []
+      }]
+    },
+    {
+      "id": 6,
+      "name": "Command line",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [{
+          "id": 7,
+          "name": "Navigation",
+          "tags": ["prerequisites"],
+          "content": "cd, ls, ...",
+          "children": []
+        },
+        {
+          "id": 8,
+          "name": "File control",
+          "tags": ["prerequisites"],
+          "content": "cp, mv, rm, ...",
+          "children": []
+        }
+      ]
+    }
   ]
 }

@@ -5,7 +5,7 @@ var m = [20, 120, 20, 120],
     root,
     links;
 
-var vis = d3.select("#body").append("svg:svg")
+var vis = d3.select("#tree").append("svg:svg")
     .attr("width", w + m[1] + m[3])
     .attr("height", h + m[0] + m[2])
     .append("svg:g")
