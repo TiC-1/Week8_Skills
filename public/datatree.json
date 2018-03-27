@@ -32,7 +32,89 @@
             "name": "Github",
             "tags": ["prerequisites", "bootcamp"],
             "content": "",
+            "children":
+            [
+                {
+                  "name": "PR",
+                  "tags": ["prerequisites", "bootcamp"],
+                  "content": "",
+                  "children": []
+                },
+                {
+                  "name": "Issues",
+                  "tags": ["prerequisites", "bootcamp"],
+                  "content": "",
+                  "children": []
+                }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Command line",
+        "tags": ["prerequisites", "bootcamp"],
+        "content": "",
+        "children":
+        [
+          {
+            "name": "Navigation",
+            "tags": ["prerequisites"],
+            "content": "cd, ls, ...",
             "children": []
+          },
+          {
+            "name": "File control",
+            "tags": ["prerequisites"],
+            "content": "cp, mv, rm, ...",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "Web",
+        "tags": ["prerequisites", "bootcamp"],
+        "content": "",
+        "children":
+        [
+          {
+            "name": "HTML",
+            "tags": ["prerequisites", "bootcamp"],
+            "content": "",
+            "children": []
+          },
+          {
+            "name": "CSS",
+            "tags": ["prerequisites", "bootcamp"],
+            "content": "",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "Git",
+        "tags": ["prerequisites", "bootcamp"],
+        "content": "",
+        "children":
+        [
+          {
+            "name": "Github",
+            "tags": ["prerequisites", "bootcamp"],
+            "content": "",
+            "children":
+            [
+                {
+                  "name": "PR",
+                  "tags": ["prerequisites", "bootcamp"],
+                  "content": "",
+                  "children": []
+                },
+                {
+                  "name": "Issues",
+                  "tags": ["prerequisites", "bootcamp"],
+                  "content": "",
+                  "children": []
+                }
+            ]
           }
         ]
       },
