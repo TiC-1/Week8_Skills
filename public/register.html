@@ -19,12 +19,12 @@
     <section class="content">
 
 
-      <div class="message">
+      <div id="message" class="message">
 
       </div>
 
-      <section id="signup_section" class="signup_section">
-        <form id="signup_form" class="signup_form" action="/signup" method="post">
+      <section id="register_section" class="register_section">
+        <form id="register_form" class="register_form" action="/signup" method="post" novalidate>
           <label for="name">Your name</label>
           <input type="name" id="name" name="name" value="" placeholder="">
           <label for="email">Your email</label>
@@ -36,6 +36,8 @@
 
           <input type="submit" role="button" class="login_button" name="" value="Sign Up">
         </form>
+        <a href="login.html">Already have an account?</a>
+
       </section>
 
     </section>
@@ -46,6 +48,11 @@
     </footer>
 
   </section>
+  <script src="js/genericFunctions.js"></script>
+
+
+  <script src="js/register.js"></script>
+
 
 </body>
 
