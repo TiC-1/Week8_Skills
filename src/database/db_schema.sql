@@ -10,10 +10,11 @@ CREATE TABLE users (
 );
 
 CREATE TABLE bookmarks (
-  user_id INTEGER NOT NULL REFERENCES users(user_id),
-  already_known integer[],
-  interested_in integer[],
-  starred integer[]
+  user_idd INTEGER NOT NULL,
+  already_known json,
+  interested_in json,
+  starred json,
+  CONSTRAINT fk_bookmaarks_user_id FOREIGN KEY (user_idd) REFERENCES users (user_id)
 );
 
 

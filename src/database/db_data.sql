@@ -7,17 +7,11 @@ INSERT INTO users (username, email, password) VALUES ('Claudio', 'claudio@tic.it
 INSERT INTO users (username, email, password) VALUES ('Giulia', 'giulia@tic.it', '$2a$10$pgzgeR9rC55BIlLdF/Y.xOESABUA3qhtfy7YPCgyxpgM2KwQwijgq');
 
 
-INSERT INTO bookmarks (already_known, interested_in, starred) VALUES
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11]),
-([2,6,1], [2,6,5], [11])
-);
+INSERT INTO bookmarks (user_idd, already_known, interested_in, starred) VALUES
+(1, '{"id": "2,5,8"}','{"id": "2,5,8"}','{"id": "2,5,8"}'),
+(2, '{"id": "2,5,8"}','{"id": "2,5,8"}','{"id": "2,5,8"}'),
+(3, '{"id": "2,5,8"}','{"id": "2,5,8"}','{"id": "2,5,8"}'),
+(4, '{"id": "2,5,8"}','{"id": "2,5,8"}','{"id": "2,5,8"}'),
+(5, '{"id": "2,5,8"}','{"id": "2,5,8"}','{"id": "2,5,8"}');
 
 COMMIT;
