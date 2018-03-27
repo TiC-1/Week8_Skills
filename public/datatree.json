@@ -22,6 +22,68 @@
             "name": "CSS preprocessor",
             "tags": [],
             "content": "",
+            "children":
+            [
+                {
+                  "id": 10,
+                  "name": "PR",
+                  "tags": ["prerequisites", "bootcamp"],
+                  "content": "",
+                  "children": []
+                },
+                {
+                  "id": 11,
+                  "name": "Issues",
+                  "tags": ["prerequisites", "bootcamp"],
+                  "content": "",
+                  "children": []
+                }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Command line",
+        "tags": ["prerequisites", "bootcamp"],
+        "content": "",
+        "children":
+        [
+          {
+            "id": 13,
+            "name": "Navigation",
+            "tags": ["prerequisites"],
+            "content": "cd, ls, ...",
+            "children": []
+          },
+          {
+            "id": 14,
+            "name": "File control",
+            "tags": ["prerequisites"],
+            "content": "cp, mv, rm, ...",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Web",
+        "tags": ["prerequisites", "bootcamp"],
+        "content": "",
+        "children":
+        [
+          {
+            "id": 16,
+            "name": "HTML",
+            "tags": ["prerequisites", "bootcamp"],
+            "content": "",
+            "children": []
+          },
+          {
+            "id": 17,
+            "name": "CSS",
+            "tags": ["prerequisites", "bootcamp"],
+            "content": "",
             "children": []
           }]
         }
