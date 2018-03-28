@@ -1,0 +1,19 @@
+{
+  "name": "Week8_Skills",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/TiC-1/Week8_Skills",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^5.0.0"
+  }
+}
