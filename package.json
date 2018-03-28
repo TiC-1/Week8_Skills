@@ -6,7 +6,8 @@
   "scripts": {
     "test:watch": "nodemon test/*.test.js | tap-spec",
     "test": "istanbul cover tape test/*.test.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "setup": "bower install"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "pg": "^7.4.1"
   },
   "devDependencies": {
+    "bower": "^1.8.4",
     "istanbul": "^1.1.0-alpha.1",
     "nodemon": "^1.17.2",
     "supertest": "^3.0.0",
