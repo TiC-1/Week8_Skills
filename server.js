@@ -3,8 +3,13 @@ const router = require("./src/router.js");
 const path = require("path");
 const exphbs = require("express-handlebars");
 const app = express();
+const { sign } = require('jsonwebtoken');
+const SECRET = process.env.SECRET;
+
 
 const PORT = process.env.PORT || 3000;
+
+//app.set (/*jwt type 'key, 'value'*/);
 
 app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('view engine', 'hbs');

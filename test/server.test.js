@@ -1,9 +1,9 @@
-var test = require("tape");
-var db = require("../src/database/db_connection.js");
-var populateDb = require("../src/database/db_populate.js");
-var queries = require("../src/database/db_queries.js");
-var router = require("../src/router.js");
-// var functions = require("../src/functions.js");
+const test = require("tape");
+const db = require("../src/database/db_connection.js");
+const populateDb = require("../src/database/db_populate.js");
+const userscontroller = require("../src/controllers/users.js");
+const usermodel = require("../src/models/user.js");
+
 
 test("Test populateDb function", function(assert) {
   populateDb(function() {
@@ -14,14 +14,14 @@ test("Test populateDb function", function(assert) {
 });
 
 test("Test lookForMail function", function(assert) {
-  queries.lookForMail("claudiu@tic.it")
+  usermodel.findByMail("claudiu@tic.it")
     .then(result => {
       console.log(result);
       assert.equals(result.length, 0, "email does not exist");
     }).catch((err) => {
       console.log(err);
     });
-  queries.lookForMail("claudio@tic.it")
+  usermodel.findByMail("claudio@tic.it")
     .then(result => {
       console.log(result);
       assert.equals(result.length, 1, "email exists");
@@ -31,18 +31,8 @@ test("Test lookForMail function", function(assert) {
     });
 });
 
-test("Test passord from useremail", function(assert){
-  queries.getUserPswd("claudio@tic.it")
-  .then(result =>{
-    console.log(result);
-  assert.equals(result.length, 1, "password exists");
-  assert.end();
-  }).catch((err) => {
-    console.log(err);
-  });
-});
 test("Test createUserRow function", function(assert) {
-  queries.createUserRow("username", "email@email.email", "password")
+  usermodel.create("username", "email@email.email", "password")
     .then(() => {
       assert.end();
     }).catch((err) => {
@@ -50,12 +40,12 @@ test("Test createUserRow function", function(assert) {
     });
 });
 
-test("Test verifyEmail function", function(assert) {
-  router.verifyEmail("claudio@tic.it")
-  .then((result) => {
-    console.log(result);
-  });
-});
+// test("Test verifyEmail function", function(assert) {
+//   router.verifyEmail("claudio@tic.it")
+//   .then((result) => {
+//     console.log(result);
+//   });
+// });
 
 
 // test("Test getCurrenciesTableData function", function(assert) {
