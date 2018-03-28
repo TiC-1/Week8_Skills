@@ -8,14 +8,14 @@ const {
 const SECRET = process.env.SECRET;
 
 
-router.post("/login", function(req, res) {
-  verifyUser(req.body.email, req.body.password, res);
+router.post("/login", function(request, response) {
+  verifyUser(request.body.email, request.body.password, response);
 });
 
 
-function verifyUser(email, password, res) {
+function verifyUser(email, password, response) {
   return user.findByMail(email)
-    .then((result) => {
+    .then(function(result) {
       if (result.length != 0) {
         const storedPassword = result[0].password;
         const userData = {
@@ -25,19 +25,18 @@ function verifyUser(email, password, res) {
         };
         pswd.compare(password, storedPassword, function(err, result) {
           if (result === true) {
-            console.log("entering in sign section");
             const cookie = sign(userData, SECRET);
-            res.writeHead(
+            response.writeHead(
               302, {
                 'Set-Cookie': `jwt=${cookie}`,
                 'Location': '/index.html'
               }
             );
-            return res.end();
+            return response.end();
           } else {
-            redirectToIndex(res, "Wrong password");
+            redirectToIndex(response, "Wrong password");
           }
-          return res.end();
+          return response.end();
         });
       } else {
         console.log("user doesn't exist in DB");
@@ -46,8 +45,8 @@ function verifyUser(email, password, res) {
 }
 
 
-function redirectToIndex(res, errorMessage) {
-  res.writeHead(
+function redirectToIndex(response, errorMessage) {
+  response.writeHead(
     302, {
       'Location': '/index.html?error=' + errorMessage
     }
