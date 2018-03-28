@@ -23,24 +23,25 @@ function verifyUser(email, password, response) {
           username: result[0].username,
           loggedin: true
         };
-        pswd.compare(password, storedPassword, function(err, result) {
-          if (result === true) {
-            const cookie = sign(userData, SECRET);
-            response.writeHead(
-              302, {
-                'Set-Cookie': `jwt=${cookie}`,
-                'Location': '/index.html'
-              }
-            );
-            return response.end();
-          } else {
-            redirectToIndex(response, "Wrong password");
-          }
-          return response.end();
-        });
+        return pswd.compare(password, storedPassword)
+          .then(function(result) {
+            if (result === true) {
+              const cookie = sign(userData, SECRET);
+              response.writeHead(
+                302, {
+                  'Set-Cookie': `jwt=${cookie}`,
+                  'Location': '/index.html'
+                }
+              );
+            } else {
+              redirectToIndex(response, "Wrong password");
+            }
+            response.end();
+          });
       } else {
         console.log("user doesn't exist in DB");
       }
+      response.end()
     });
 }
 
@@ -52,5 +53,6 @@ function redirectToIndex(response, errorMessage) {
     }
   );
 }
+
 
 module.exports = router;

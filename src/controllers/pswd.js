@@ -29,17 +29,17 @@ const encrypt = (clearPswd, callback) => {
 // Compare clear pswd with hash
 
 // Callback style
-const compare = (clearPswd, hashedPswd, callback) => {
-  bcrypt.compare(clearPswd, hashedPswd, callback);
-};
+// const compare = (clearPswd, hashedPswd, callback) => {
+//   bcrypt.compare(clearPswd, hashedPswd, callback);
+// };
 
-// // Promise style
-// function compare(clearPswd, hashedPswd) {
-//   return bcrypt.compare(clearPswd, hashedPswd)
-//   .then(function(result) {
-//     return result;
-//   });
-// }
+// Promise style
+function compare(clearPswd, hashedPswd) {
+  return bcrypt.compare(clearPswd, hashedPswd)
+  .then(function(result) {
+    return result;
+  });
+}
 
 
 module.exports = {
