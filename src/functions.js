@@ -1,7 +1,6 @@
 // GENERIC SHARED PURE FUNCTIONS
 
 var querystring = require("querystring");
-var axios = require("axios");
 var queries = require("./database/db_queries.js");
 
 
