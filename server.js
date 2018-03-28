@@ -20,7 +20,9 @@ app.engine(
 // parse application/x-www-form-urlencoded
 // https://github.com/expressjs/body-parser
 app.use(bodyParser.urlencoded({ extended: false }))
+server.use(bodyParser.json());
 
+// use router.js (seen const on top of the page)
 app.use("/", router);
 
 // create a 404 middleware sending the '404.html' file

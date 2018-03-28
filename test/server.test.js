@@ -49,9 +49,10 @@ test("Test create user query", function(assert) {
 test("Test /login endpoint", function(assert) {
   supertest(userscontroller)
     .post("/login")
-    .query({
-      email: 'claudio@tic.it',
-      password: 'claudio'
+    .type("form")
+    .send({
+      email: "claudio@tic.it",
+      password: "claudio"
     })
     .expect(200)
     .end(function(error, response) {
