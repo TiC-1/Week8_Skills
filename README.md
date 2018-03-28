@@ -24,9 +24,10 @@ As a user I want to:
 
 ## Setup 💻
 - clone Repo
-- create a postrgres DB importing our db_schema.sql & db_data.sql
-- "npm i" or "npm install"
-- run with "npm run dev" for local testing
+- create a Postgres DB importing our db_schema.sql & db_data.sql
+- `npm i`
+- `npm run setup`
+- run with `npm run dev` for local testing
 
 ## Try it on Heroku!
 - user example: iannis@tic.it
