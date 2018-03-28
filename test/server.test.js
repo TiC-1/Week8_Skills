@@ -1,8 +1,9 @@
 const test = require("tape");
+const supertest = require("supertest");
 const db = require("../src/database/db_connection.js");
 const populateDb = require("../src/database/db_populate.js");
-const userscontroller = require("../src/controllers/users.js");
 const usermodel = require("../src/models/user.js");
+const userscontroller = require("../src/controllers/users.js");
 
 
 test("Test populateDb function", function(assert) {
@@ -13,131 +14,52 @@ test("Test populateDb function", function(assert) {
   });
 });
 
-test("Test lookForMail function", function(assert) {
+test("Test lookForMail query", function(assert) {
   usermodel.findByMail("claudiu@tic.it")
     .then(result => {
       console.log(result);
-      assert.equals(result.length, 0, "email does not exist");
-    }).catch((err) => {
+      assert.equals(result.length, 0, "claudiu@tic.it does not exist in DB");
+    })
+    .catch((err) => {
       console.log(err);
     });
   usermodel.findByMail("claudio@tic.it")
     .then(result => {
       console.log(result);
-      assert.equals(result.length, 1, "email exists");
+      assert.equals(result.length, 1, "claudio@tic.it exists in DB");
       assert.end();
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err);
     });
 });
 
-test("Test createUserRow function", function(assert) {
-  usermodel.create("username", "email@email.email", "password")
-    .then(() => {
+test("Test create user query", function(assert) {
+  return usermodel.create("John Dow", "john@domain.com", "MyPswD")
+    .then((result) => {
+      console.log(result);
+      assert.equal(result, 6, "A new user has been added with id:6")
       assert.end();
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err);
     });
 });
 
-// test("Test verifyEmail function", function(assert) {
-//   router.verifyEmail("claudio@tic.it")
-//   .then((result) => {
-//     console.log(result);
-//   });
-// });
-
-
-// test("Test getCurrenciesTableData function", function(assert) {
-//   queries.getCurrenciesTableData()
-//     .then(result => {
-//       assert.ok(result[0].hasOwnProperty("id"), "result has 'id' property");
-//       assert.ok(result[0].hasOwnProperty("name"), "result has 'name' property");
-//       assert.ok(result[0].hasOwnProperty("code"), "result has 'code' property");
-//       assert.end();
-//     }).catch((err) => {
-//       console.log(err);
-//     });
-// });
-//
-//
-// test("Test listCurrenciesCodes function", function(assert) {
-//   codes = functions.listCurrenciesCodes(data);
-//   assert.ok(codes.length = 4, "array's length is 4");
-//   assert.equal(codes[0], "USD", "array's first element has 'USD' value");
-//   assert.equal(codes[3], "ETH", "array's last element has 'ETH' value");
-//   assert.end();
-// });
-//
-//
-// test("Test combineCurrenciesCodes function", function(assert) {
-//   combinations = functions.combineCurrenciesCodes(codes);
-//   assert.ok(combinations.length == 12, "array's' length is 12");
-//   assert.equal(combinations[0], "USD-EUR", "array's first element has 'USD-EUR' value");
-//   assert.equal(combinations[11], "ETH-BTC", "array's last element has 'ETH-BTC' value");
-//   assert.end();
-// });
-//
-//
-// test("Test updateRatesTable function", function(assert) {
-//   queries.updateRatesTable('USD', 'EUR', 123.456, Math.round(Date.now()/1000)).then(result => {
-//     assert.ok(true, "updateRatesTable function has been executed");
-//     assert.ok(result.rows.length === 1, "rates table should contain one row");
-//     assert.end();
-//   }).catch((err) => {
-//     console.log(err);
-//   });
-// });
-//
-//
-// test("Test getRatesTableData function", function(assert) {
-//   queries.getRatesTableData()
-//     .then(result => {
-//       assert.ok(result[0].hasOwnProperty("fromcurrency_id"), "result has 'fromcurrency_id' property");
-//       assert.ok(result[0].hasOwnProperty("tocurrency_id"), "result has 'tocurrency_id' property");
-//       assert.ok(result[0].hasOwnProperty("rate"), "result has 'rate' property");
-//       assert.ok(result[0].hasOwnProperty("timestamp"), "result has 'timestamp' property");
-//       assert.end();
-//     }).catch((err) => {
-//       console.log(err);
-//     });
-// });
-//
-//
-// test("Test getCurrenciesAndRatesData function", function(assert) {
-//   queries.getCurrenciesAndRatesData()
-//     .then(result => {
-//       assert.ok(result[0].hasOwnProperty("from_currency"), "result has 'from_currency' property");
-//       assert.ok(result[0].hasOwnProperty("to_currency"), "result has 'to_currency' property");
-//       assert.ok(result[0].hasOwnProperty("change_rate"), "result has 'change_rate' property");
-//       assert.end();
-//     }).catch((err) => {
-//       console.log(err);
-//     });
-// });
-//
-//
-// test("Test getRatesFromAPI function", function(assert) {
-//   functions.getRatesFromAPI(combinations.slice(0, 3)).then((result) => {
-//     queries.getRatesTableData().then((rows) => {
-//       assert.ok(rows[0].hasOwnProperty("fromcurrency_id"), "result has 'fromcurrency_id' property");
-//       assert.end();
-//     }).catch((err) => {
-//       console.log(err);
-//     });
-//   }).catch((err) => {
-//     console.log(err);
-//   });
-// });
-//
-// test("Test checkRatesAge function", function(assert) {
-//   functions.checkRatesAge().then(result => {
-//     assert.ok(result, "Data should be updated");
-//     assert.end();
-//   }).catch((err) => {
-//     console.log(err);
-//   });
-// });
+test("Test /login endpoint", function(assert) {
+  supertest(userscontroller)
+    .post("/login")
+    .query({
+      email: 'claudio@tic.it',
+      password: 'claudio'
+    })
+    .expect(200)
+    .end(function(error, response) {
+      console.log(response);
+      // assert.equal(response.text, JSON.stringify(["c", "c"]), "risposta test esatto!");
+      assert.end();
+    });
+});
 
 test("End pool connection", function(assert) {
   db.end(function() {

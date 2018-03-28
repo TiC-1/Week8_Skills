@@ -11,9 +11,12 @@ function findByMail(email) {
 
 // Insert new user in db
 function create(name, email, password) {
-  return db.query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id;", [name, email, password]);
-  }
-  // return result ID
+  return db.query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id;", [name, email, password])
+    .then(result => {
+      // console.log(result.rows[0].id);
+      return result.rows[0].id;
+    })
+}
 
 module.exports = {
   findByMail: findByMail,

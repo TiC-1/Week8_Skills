@@ -3,13 +3,10 @@ const router = require("./src/router.js");
 const path = require("path");
 const exphbs = require("express-handlebars");
 const app = express();
-const { sign } = require('jsonwebtoken');
-const SECRET = process.env.SECRET;
+const bodyParser = require('body-parser')
 
 
 const PORT = process.env.PORT || 3000;
-
-//app.set (/*jwt type 'key, 'value'*/);
 
 app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('view engine', 'hbs');
@@ -19,6 +16,10 @@ app.engine(
     extname: 'hbs'
   })
 );
+
+// parse application/x-www-form-urlencoded
+// https://github.com/expressjs/body-parser
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use("/", router);
 
