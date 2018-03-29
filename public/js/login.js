@@ -27,7 +27,7 @@ function displayLoginWarning(email, password) {
   // Call appropriate function to build warning
   buildLoginWarning(email, password);
   // Set html section 'message_container' as container
-  var container = document.getElementById("message");
+  var container = document.getElementById("form_error");
   // Display warning in container
   if (warning.length != 0) {
     container.replaceChild(

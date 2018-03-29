@@ -9,10 +9,47 @@ const SECRET = process.env.SECRET;
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-router.get("/login", function(request, response) {});
+router.get("/login", function(request, response) {
+  response.render("login");
+});
 
 router.post("/login", urlencodedParser, function(request, response) {
   verifyUser(request.body.email, request.body.password, response);
+});
+
+function verifyUser(email, password, response) {
+  return user.findByMail(email).then(function(result) {
+    if (result.length != 0) {
+      const storedPassword = result[0].password;
+      const userData = {
+        id: result[0].id,
+        username: result[0].username,
+        loggedin: true
+      };
+      return pswd.compare(password, storedPassword).then(function(result) {
+        if (result) {
+          const cookie = sign(userData, SECRET);
+          response.writeHead(302, {
+            "Set-Cookie": `jwt=${cookie}`,
+            Location: "/"
+          });
+          response.end();
+        } else {
+          response.render("login", {
+            message: { status: "error", text: "Wrong password" }
+          });
+        }
+      });
+    } else {
+      response.render("login", {
+        message: { status: "error", text: "Email doesn't exist" }
+      });
+    }
+  });
+}
+
+router.get("/register", function(request, response) {
+  response.render("register");
 });
 
 router.post("/register", urlencodedParser, function(request, response) {
@@ -40,8 +77,9 @@ function removeToken(response) {
 function createUser(name, email, password, response) {
   return user.findByMail(email).then(function(result) {
     if (result.length != 0) {
-      console.log("Mail already exists");
-      response.end();
+      response.render("register", {
+        message: { status: "error", text: "Email already exists" }
+      });
     } else {
       return pswd
         .encrypt(password)
@@ -50,56 +88,19 @@ function createUser(name, email, password, response) {
           return user.create(name, email, hashedPswd);
         })
         .then(function(result) {
-          console.log("New user created with id", result);
           const userData = {
-            id: result /*[0].id*/,
+            id: result,
             username: name,
             loggedin: true
           };
           const cookie = sign(userData, SECRET);
           response.writeHead(302, {
             "Set-Cookie": `jwt=${cookie}; Max-Age: 10000`,
-            Location: "/index.html"
+            Location: "/"
           });
-          console.log("cookie set!");
           response.end();
         });
     }
-  });
-}
-
-function verifyUser(email, password, response) {
-  return user.findByMail(email).then(function(result) {
-    if (result.length != 0) {
-      const storedPassword = result[0].password;
-      const userData = {
-        id: result[0].id,
-        username: result[0].username,
-        loggedin: true
-      };
-      return pswd.compare(password, storedPassword).then(function(result) {
-        if (result) {
-          const cookie = sign(userData, SECRET);
-          response.writeHead(302, {
-            "Set-Cookie": `jwt=${cookie}`,
-            Location: "/index.html"
-          });
-        } else {
-          console.log("Wrong password");
-          // TODO: Must add message to user and stay on login page
-        }
-        response.end();
-      });
-    } else {
-      console.log("user doesn't exist in DB");
-    }
-    response.end();
-  });
-}
-
-function redirectToIndex(response, errorMessage) {
-  response.writeHead(302, {
-    Location: "/index.html?error=" + errorMessage
   });
 }
 

@@ -18,7 +18,7 @@ function checkUserStatus(cookie) {
       '!</p><form class="logout_form" action="/logout" method="post" novalidate><input type="submit" role="button" class="logout_button" name="" value="Log out">';
   } else {
     document.getElementsByClassName("user")[0].innerHTML =
-      '<ul><a href="login.html"><li>Log in</li></a><a href="register.html"><li>Register</li></a></ul>';
+      '<ul><a href="/login"><li>Log in</li></a><a href="/register"><li>Register</li></a></ul>';
   }
 }
 
@@ -27,6 +27,5 @@ function tokenReader(jwt) {
   var splittedJWT = jwt.split("=");
   var splittedToken = splittedJWT[1].split(".");
   var payload = JSON.parse(atob(splittedToken[1]));
-  console.log(payload);
   return payload;
 }
