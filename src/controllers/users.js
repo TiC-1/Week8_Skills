@@ -9,6 +9,8 @@ const SECRET = process.env.SECRET;
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+router.get("/login", function(request, response) {});
+
 router.post("/login", urlencodedParser, function(request, response) {
   verifyUser(request.body.email, request.body.password, response);
 });

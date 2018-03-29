@@ -13,7 +13,10 @@ server.set("view engine", "hbs");
 server.engine(
   "hbs",
   exphbs({
-    extname: "hbs"
+    extname: "hbs",
+    layoutsDir: path.join(__dirname, "src", "views", "layouts"),
+    partialsDir: path.join(__dirname, "src", "views", "partials"),
+    defaultLayout: "default"
   })
 );
 
