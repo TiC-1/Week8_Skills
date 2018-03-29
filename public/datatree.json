@@ -1,125 +1,204 @@
 {
   "name": "JavaScript web development",
-  "children": [{
+  "children": [
+    {
       "id": 1,
-      "name": "Web",
+      "name": "Unix",
       "tags": ["prerequisites", "bootcamp"],
       "content": "<p>Lorem <b>ipsum</b> sit <a href=\"//google.com\">dolor</a></p><p>Omnis dolores et repudiandae nobis. Itaque quisquam mollitia et tenetur aut. Tempora sint quisquam et sunt occaecati reiciendis maxime. Odit soluta cumque dolores et consectetur eos mollitia. Non incidunt veritatis accusamus ea iste dolores. Ab quidem quasi in commodi ipsa ad omnis.</p>",
-      "children": [{
+      "children": [
+        {
           "id": 2,
+          "name": "Command line",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
+          "children": [
+            {
+              "id": 3,
+              "name": "Touch typing",
+              "tags": [],
+              "content": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Permissions",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Applications",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [
+        {
+          "id": 6,
+          "name": "Editor",
+          "tags": ["prerequisites"],
+          "content": "",
+          "children": []
+        },
+        {
+          "id": 7,
+          "name": "Browser",
+          "tags": ["prerequisites"],
+          "content": "",
+          "children": [
+            {
+              "id": 8,
+              "name": "Developer tools",
+              "tags": ["prerequisites", "bootcamp"],
+              "content": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Git",
+          "tags": ["prerequisites"],
+          "content": "",
+          "children": [
+            {
+              "id": 10,
+              "name": "Github",
+              "tags": ["prerequisites", "bootcamp"],
+              "content": "",
+              "children": [
+                {
+                  "id": 11,
+                  "name": "Pull requests",
+                  "tags": ["prerequisites", "bootcamp"],
+                  "content": "",
+                  "children": []
+                },
+                {
+                  "id": 12,
+                  "name": "Issues",
+                  "tags": ["prerequisites", "bootcamp"],
+                  "content": "",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Web",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [
+        {
+          "id": 14,
           "name": "HTML",
           "tags": ["prerequisites", "bootcamp"],
           "content": "",
           "children": []
         },
         {
-          "id": 3,
+          "id": 15,
           "name": "CSS",
           "tags": ["prerequisites", "bootcamp"],
           "content": "",
-          "children": [{
-            "id": 9,
-            "name": "CSS preprocessor",
-            "tags": [],
-            "content": "",
-            "children":
-            [
+          "children": [
+            {
+              "id": 16,
+              "name": "Responsive",
+              "tags": ["prerequisites", "bootcamp"],
+              "content": "",
+              "children": [
                 {
-                  "id": 10,
-                  "name": "PR",
-                  "tags": ["prerequisites", "bootcamp"],
-                  "content": "",
-                  "children": []
-                },
-                {
-                  "id": 11,
-                  "name": "Issues",
+                  "id": 17,
+                  "name": "Mobile first",
                   "tags": ["prerequisites", "bootcamp"],
                   "content": "",
                   "children": []
                 }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 12,
-        "name": "Command line",
-        "tags": ["prerequisites", "bootcamp"],
-        "content": "",
-        "children":
-        [
-          {
-            "id": 13,
-            "name": "Navigation",
-            "tags": ["prerequisites"],
-            "content": "cd, ls, ...",
-            "children": []
-          },
-          {
-            "id": 14,
-            "name": "File control",
-            "tags": ["prerequisites"],
-            "content": "cp, mv, rm, ...",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": 15,
-        "name": "Web",
-        "tags": ["prerequisites", "bootcamp"],
-        "content": "",
-        "children":
-        [
-          {
-            "id": 16,
-            "name": "HTML",
-            "tags": ["prerequisites", "bootcamp"],
-            "content": "",
-            "children": []
-          },
-          {
-            "id": 17,
-            "name": "CSS",
-            "tags": ["prerequisites", "bootcamp"],
-            "content": "",
-            "children": []
-          }]
+              ]
+            }
+          ]
         }
       ]
     },
     {
-      "id": 4,
-      "name": "Git",
+      "id": 18,
+      "name": "JavaScript",
       "tags": ["prerequisites", "bootcamp"],
       "content": "",
-      "children": [{
-        "id": 5,
-        "name": "Github",
-        "tags": ["prerequisites", "bootcamp"],
-        "content": "",
-        "children": []
-      }]
-    },
-    {
-      "id": 6,
-      "name": "Command line",
-      "tags": ["prerequisites", "bootcamp"],
-      "content": "",
-      "children": [{
-          "id": 7,
-          "name": "Navigation",
-          "tags": ["prerequisites"],
-          "content": "cd, ls, ...",
+      "children": [
+        {
+          "id": 19,
+          "name": "Basics",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
           "children": []
         },
         {
-          "id": 8,
-          "name": "File control",
-          "tags": ["prerequisites"],
-          "content": "cp, mv, rm, ...",
+          "id": 20,
+          "name": "Callbacks",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
           "children": []
+        },
+        {
+          "id": 21,
+          "name": "DOM manipulation",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
+          "children": []
+        },
+        {
+          "id": 22,
+          "name": "Event loop",
+          "tags": ["prerequisites", "bootcamp"],
+          "content": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Software development",
+      "tags": ["prerequisites", "bootcamp"],
+      "content": "",
+      "children": [
+        {
+          "id": 24,
+          "name": "Software engineering",
+          "tags": ["bootcamp"],
+          "content": "",
+          "children": []
+        },
+        {
+          "id": 25,
+          "name": "Agile",
+          "tags": ["bootcamp"],
+          "content": "",
+          "children": [
+            {
+              "id": 26,
+              "name": "Pair programming",
+              "tags": ["bootcamp"],
+              "content": "",
+              "children": []
+            },
+            {
+              "id": 27,
+              "name": "User stories",
+              "tags": ["bootcamp"],
+              "content": "",
+              "children": []
+            }
+          ]
         }
       ]
     }
