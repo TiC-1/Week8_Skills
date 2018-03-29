@@ -1,14 +1,9 @@
 const express = require("express");
+const app = express(); // Do we actually need this ???
 const router = express.Router();
-const queries = require("./database/db_queries.js");
-const functions = require("./functions.js")
+const userscontroller = require("./controllers/users.js");
 
-router.get("/object.js", function(req, res) {
-  functions.checkRatesAge();
-  queries.getCurrenciesAndRatesData().then(result => {
-    res.render("object", {currenciesAndRates: JSON.stringify(result)});
-  });
-});
+router.use(userscontroller);
 
 router.use(express.static(__dirname + "/../public"));
 
