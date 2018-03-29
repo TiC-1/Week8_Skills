@@ -49,12 +49,7 @@ test("Test create user query", function(assert) {
 test("Test /login endpoint", function(assert) {
   supertest(userscontroller)
     .post("/login")
-    .type("form")
-    .send({
-      email: "claudio@tic.it",
-      password: "claudio"
-    })
-    .expect(200)
+    .send("email=claudio@tic.it&password=claudio")
     .end(function(error, response) {
       console.log(response);
       // assert.equal(response.text, JSON.stringify(["c", "c"]), "risposta test esatto!");

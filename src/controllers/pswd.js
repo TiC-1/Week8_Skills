@@ -33,12 +33,9 @@ const encrypt = (clearPswd, callback) => {
 //   bcrypt.compare(clearPswd, hashedPswd, callback);
 // };
 
-// Promise style
+// Promise style and one line arrow function implicite return
 function compare(clearPswd, hashedPswd) {
-  return bcrypt.compare(clearPswd, hashedPswd)
-  .then(function(result) {
-    return result;
-  });
+  return bcrypt.compare(clearPswd, hashedPswd).then(result => result);
 }
 
 

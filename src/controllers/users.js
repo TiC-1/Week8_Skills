@@ -9,8 +9,18 @@ const SECRET = process.env.SECRET;
 
 
 router.post("/login", function(request, response) {
+  console.log("enter login", request);
   verifyUser(request.body.email, request.body.password, response);
 });
+
+// router.post("/register", function(request, response) {
+//   return verifyUser(request.body.email, request.body.password)
+//   .then(createNewUser(request.body.name, request.body.email, request.body.password) {
+//     // result pswd.encrypt function
+//     // then return call user.create function in queries
+//     // then return message to frontend to say 'account has been created'
+//   });
+// });
 
 
 function verifyUser(email, password, response) {
@@ -25,7 +35,7 @@ function verifyUser(email, password, response) {
         };
         return pswd.compare(password, storedPassword)
           .then(function(result) {
-            if (result === true) {
+            if (result) {
               const cookie = sign(userData, SECRET);
               response.writeHead(
                 302, {
@@ -34,7 +44,9 @@ function verifyUser(email, password, response) {
                 }
               );
             } else {
-              redirectToIndex(response, "Wrong password");
+              console.log("Wrong password");
+              // redirectToIndex(response, "Wrong password");
+              // TODO: Must add message to user and stay on login page
             }
             response.end();
           });
