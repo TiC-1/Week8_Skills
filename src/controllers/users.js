@@ -9,19 +9,44 @@ const SECRET = process.env.SECRET;
 
 
 router.post("/login", function(request, response) {
-  console.log("enter login", request);
   verifyUser(request.body.email, request.body.password, response);
 });
 
-// router.post("/register", function(request, response) {
-//   return verifyUser(request.body.email, request.body.password)
-//   .then(createNewUser(request.body.name, request.body.email, request.body.password) {
-//     // result pswd.encrypt function
-//     // then return call user.create function in queries
-//     // then return message to frontend to say 'account has been created'
-//   });
-// });
+router.post("/register", function(request, response) {
+  createUser(request.body.name, request.body.email, request.body.password, response);
+});
 
+
+function createUser(name, email, password, response) {
+  return user.findByMail(email)
+    .then(function(result) {
+      if (result.length != 0) {
+        console.log("Mail already exists");
+        response.end();
+      } else {
+        return pswd.encrypt(password)
+          .then(function(result) {
+            const hashedPswd = result;
+            return user.create(name, email, hashedPswd);
+          })
+          .then(function(result) {
+            console.log("New user created with id", result);
+            const userData = {
+              id: result /*[0].id*/ ,
+              username: name,
+              loggedin: true
+            };
+            const cookie = sign(userData, SECRET);
+            response.writeHead(
+              302, {
+                'Set-Cookie': `jwt=${cookie}`,
+                'Location': '/index.html'
+              });
+            response.end();
+          });
+      }
+    });
+}
 
 function verifyUser(email, password, response) {
   return user.findByMail(email)
@@ -45,7 +70,6 @@ function verifyUser(email, password, response) {
               );
             } else {
               console.log("Wrong password");
-              // redirectToIndex(response, "Wrong password");
               // TODO: Must add message to user and stay on login page
             }
             response.end();
