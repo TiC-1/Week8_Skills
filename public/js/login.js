@@ -42,12 +42,18 @@ function displayLoginWarning(email, password) {
 
 // Check some input values and add infos to user global warning message
 function buildLoginWarning(email, password) {
+  // Initialize warnings
   warning = [];
+  document.getElementById("email").style.borderColor = "inherit";
+  document.getElementById("password").style.borderColor = "inherit";
+  // Check entered values
   if (email == "") {
     warning.push("Enter email");
+    document.getElementById("email").style.borderColor = "orange";
   }
   if (password == "") {
     warning.push("Enter password");
+    document.getElementById("password").style.borderColor = "orange";
   }
   return warning;
 }
