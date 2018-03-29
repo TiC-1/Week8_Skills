@@ -5,7 +5,6 @@ const populateDb = require("../src/database/db_populate.js");
 const usermodel = require("../src/models/user.js");
 const userscontroller = require("../src/controllers/users.js");
 
-
 test("Test populateDb function", function(assert) {
   populateDb(function() {
     assert.ok(true, "populateDb function has been executed");
@@ -15,33 +14,36 @@ test("Test populateDb function", function(assert) {
 });
 
 test("Test lookForMail query", function(assert) {
-  usermodel.findByMail("claudiu@tic.it")
+  usermodel
+    .findByMail("claudiu@tic.it")
     .then(result => {
       console.log(result);
       assert.equals(result.length, 0, "claudiu@tic.it does not exist in DB");
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
-  usermodel.findByMail("claudio@tic.it")
+  usermodel
+    .findByMail("claudio@tic.it")
     .then(result => {
       console.log(result);
       assert.equals(result.length, 1, "claudio@tic.it exists in DB");
       assert.end();
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
 });
 
 test("Test create user query", function(assert) {
-  return usermodel.create("John Dow", "john@domain.com", "MyPswD")
-    .then((result) => {
+  return usermodel
+    .create("John Dow", "john@domain.com", "MyPswD")
+    .then(result => {
       console.log(result);
-      assert.equal(result, 6, "A new user has been added with id:6")
+      assert.equal(result, 6, "A new user has been added with id:6");
       assert.end();
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
 });
