@@ -1,18 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const user = require("../models/user.js");
+const bodyParser = require('body-parser');
 const pswd = require("./pswd.js");
 const {
   sign
 } = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-router.post("/login", function(request, response) {
+
+router.post("/login", urlencodedParser, function(request, response) {
   verifyUser(request.body.email, request.body.password, response);
 });
 
-router.post("/register", function(request, response) {
+router.post("/register", urlencodedParser, function(request, response) {
   createUser(request.body.name, request.body.email, request.body.password, response);
 });
 

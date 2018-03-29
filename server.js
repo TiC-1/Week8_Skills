@@ -3,7 +3,6 @@ const router = require("./src/router.js");
 const path = require("path");
 const exphbs = require("express-handlebars");
 const server = express();
-const bodyParser = require('body-parser');
 
 
 // SET PORT
@@ -19,13 +18,6 @@ server.engine(
     extname: 'hbs'
   })
 );
-
-
-// PARSING (see https://github.com/expressjs/body-parser)
-// parse application/x-www-form-urlencoded
-server.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-server.use(bodyParser.json());
 
 
 // SET ROUTER
