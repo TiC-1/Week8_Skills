@@ -7,7 +7,7 @@
     "test:watch": "nodemon test/*.test.js | tap-spec",
     "test": "istanbul cover tape test/*.test.js",
     "dev": "nodemon server.js",
-    "setup": "bower install",
+    "postinstall": "bower install",
     "precommit": "pretty-quick --staged"
   },
   "repository": {
