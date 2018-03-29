@@ -7,7 +7,8 @@
     "test:watch": "nodemon test/*.test.js | tap-spec",
     "test": "istanbul cover tape test/*.test.js",
     "dev": "nodemon server.js",
-    "setup": "bower install"
+    "setup": "bower install",
+    "precommit": "pretty-quick --staged"
   },
   "repository": {
     "type": "git",
@@ -33,8 +34,11 @@
   },
   "devDependencies": {
     "bower": "^1.8.4",
+    "husky": "^0.14.3",
     "istanbul": "^1.1.0-alpha.1",
     "nodemon": "^1.17.2",
+    "prettier": "^1.11.1",
+    "pretty-quick": "^1.4.1",
     "supertest": "^3.0.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.9.0"

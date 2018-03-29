@@ -4,38 +4,33 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const server = express();
 
-
 // SET PORT
 const PORT = process.env.PORT || 3000;
 
-
 // SET HANDLEBARS
-server.set('views', path.join(__dirname, 'src', 'views'));
-server.set('view engine', 'hbs');
+server.set("views", path.join(__dirname, "src", "views"));
+server.set("view engine", "hbs");
 server.engine(
-  'hbs',
+  "hbs",
   exphbs({
-    extname: 'hbs'
+    extname: "hbs"
   })
 );
-
 
 // SET ROUTER
 // use router.js (seen const on top of the page)
 server.use("/", router);
 
-
 // SET ERROR FILES
 // create a 404 middleware sending the '404.html' file
 server.use((request, response) => {
-  response.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+  response.status(404).sendFile(path.join(__dirname, "public", "404.html"));
 });
 // create a 500 middleware sending the '500.html' file
 server.use((error, request, response, next) => {
   console.log(error);
-  response.status(500).sendFile(path.join(__dirname, 'public', '500.html'));
+  response.status(500).sendFile(path.join(__dirname, "public", "500.html"));
 });
-
 
 // SERVER
 server.listen(PORT, function() {

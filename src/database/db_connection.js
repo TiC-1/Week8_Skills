@@ -13,7 +13,7 @@ var userPass = params.auth.split(":");
 var options = {
   connectionString: process.env.DATABASE_URL,
   max: process.env.DB_MAX_CONNECTIONS || 2
-}
+};
 
 var pool = new Pool(options);
 
