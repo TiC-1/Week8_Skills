@@ -6,5 +6,6 @@ const userscontroller = require("./controllers/users.js");
 router.use(userscontroller);
 
 router.use(express.static(__dirname + "/../public"));
+router.use("/js", express.static(__dirname + "/../bower_components"));
 
 module.exports = router;
