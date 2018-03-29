@@ -54,10 +54,15 @@ test("Test /login endpoint", function(assert) {
     .send("email=claudio@tic.it&password=claudio")
     .end(function(error, response) {
       console.log(response);
+      // Improve test with assert.xxx
       // assert.equal(response.text, JSON.stringify(["c", "c"]), "risposta test esatto!");
       assert.end();
     });
 });
+
+// Add test of /register endpoint
+
+// Add test of /logout endpoint
 
 test("End pool connection", function(assert) {
   db.end(function() {

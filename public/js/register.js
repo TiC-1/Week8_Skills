@@ -5,27 +5,27 @@ var email;
 var password1;
 var password2;
 
-getCookies();
 listenToForm();
 
 function listenToForm() {
+  document
+    .getElementById("register_form")
+    .addEventListener("submit", function(event) {
+      event.preventDefault();
+      // Get name input value
+      name = event.target.querySelectorAll("input")[0].value;
+      // Get email input value
+      mail = event.target.querySelectorAll("input")[1].value;
+      // Get password input value
+      password1 = event.target.querySelectorAll("input")[2].value;
+      password2 = event.target.querySelectorAll("input")[3].value;
 
-  document.getElementById("register_form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    // Get name input value
-    name = event.target.querySelectorAll("input")[0].value;
-    // Get email input value
-    mail = event.target.querySelectorAll("input")[1].value;
-    // Get password input value
-    password1 = event.target.querySelectorAll("input")[2].value;
-    password2 = event.target.querySelectorAll("input")[3].value;
-
-    // Display login warning message
-    displayLoginWarning(name, mail, password1, password2);
-    if (warning.length == 0) {
-      document.getElementById("register_form").submit();
-    }
-  });
+      // Display login warning message
+      displayLoginWarning(name, mail, password1, password2);
+      if (warning.length == 0) {
+        document.getElementById("register_form").submit();
+      }
+    });
 }
 
 // Display user warning message
@@ -36,9 +36,12 @@ function displayLoginWarning(name, email, password1, password2) {
   var container = document.getElementById("message");
   // Display warning in container
   if (warning.length != 0) {
-    container.replaceChild(createList(warning, 'warning_list', 'warning'), container.firstChild);
+    container.replaceChild(
+      createList(warning, "warning_list", "warning"),
+      container.firstChild
+    );
   } else {
-    container.innerHTML = '';
+    container.innerHTML = "";
   }
   return warning;
 }
@@ -46,32 +49,34 @@ function displayLoginWarning(name, email, password1, password2) {
 // Check some input values and add infos to user global warning message
 function buildLoginWarning(name, email, password1, password2) {
   warning = [];
-    if (name == '') {
-    warning.push('Enter name');
+  if (name == "") {
+    warning.push("Enter name");
   }
   if (name.match(/\W/gi)) {
-    warning.push('Name musn\'t contain special characters (only letters and digits)');
+    warning.push(
+      "Name musn't contain special characters (only letters and digits)"
+    );
   }
-  if (email == '') {
-    warning.push('Enter email');
+  if (email == "") {
+    warning.push("Enter email");
   }
   if (email.includes(" ")) {
-    warning.push('Email musn\'t contain space');
+    warning.push("Email musn't contain space");
   }
   if (!email.includes("@")) {
-    warning.push('Email must contain @');
+    warning.push("Email must contain @");
   }
   if (!email.includes(".")) {
-    warning.push('Email must contain a dot');
+    warning.push("Email must contain a dot");
   }
-  if (password1 == '') {
-    warning.push('Enter password');
+  if (password1 == "") {
+    warning.push("Enter password");
   }
-  if (password1 != '' && (password1.length < 6 || password1.length >20)) {
-    warning.push('Password length must be between 6 and 20 characters');
+  if (password1 != "" && (password1.length < 6 || password1.length > 20)) {
+    warning.push("Password length must be between 6 and 20 characters");
   }
   if (password1 != password2) {
-    warning.push('Passwords don\'t match');
+    warning.push("Passwords don't match");
   }
   return warning;
 }
