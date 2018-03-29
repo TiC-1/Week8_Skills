@@ -1,7 +1,10 @@
 const express = require("express");
-const app = express(); // Do we actually need this ???
 const router = express.Router();
 const userscontroller = require("./controllers/users.js");
+
+router.get("/", function(request, response) {
+  response.render("home");
+});
 
 router.use(userscontroller);
 

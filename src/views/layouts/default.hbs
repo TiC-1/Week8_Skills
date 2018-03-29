@@ -17,19 +17,18 @@
     <header>
       <div class="title">
         <h1 class="headerTitle">Javascript Web Dev Skills</h1></div>
-      <div class="user">
-      </div>
+      {{> user}}
     </header>
 
     <section class="content">
-
-      <div id="message">
+      {{#if message}}
+      <div id="message" class="message {{message.status}}">
+        {{ message.text }}
       </div>
+      {{/if}}
 
-      <div class="chart">
-        <div id="tree">
-        </div>
-      </div>
+      {{{body}}}
+
 
     </section>
 
@@ -39,8 +38,14 @@
   </section>
 
   <script src="js/token.js"></script>
+<<<<<<< HEAD:public/index.html
   <script src="js/d3/d3.js"></script>
   <script src="js/app.js"></script>
+=======
+  <script src="js/index.js"></script>
+
+
+>>>>>>> master:src/views/layouts/default.hbs
 </body>
 
 </html>
