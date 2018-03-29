@@ -3,7 +3,6 @@ var warning = [];
 var email;
 var password;
 
-getCookies();
 listenToForm();
 
 function listenToForm() {

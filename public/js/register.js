@@ -5,7 +5,6 @@ var email;
 var password1;
 var password2;
 
-getCookies();
 listenToForm();
 
 function listenToForm() {
@@ -55,20 +54,11 @@ function buildLoginWarning(name, email, password1, password2) {
   }
   if (name.match(/\W/gi)) {
     warning.push(
-      "Name musn't contain special characters (only letters and digits)"
+      "Name musn't contain special characters (only letters, digits, underscore and no space)"
     );
   }
-  if (email == "") {
-    warning.push("Enter email");
-  }
-  if (email.includes(" ")) {
-    warning.push("Email musn't contain space");
-  }
-  if (!email.includes("@")) {
-    warning.push("Email must contain @");
-  }
-  if (!email.includes(".")) {
-    warning.push("Email must contain a dot");
+  if (email != email.match(/(\w|\.|-)+@+\w+\.+[a-z]+/gi)) {
+    warning.push("Enter a valid email");
   }
   if (password1 == "") {
     warning.push("Enter password");

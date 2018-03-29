@@ -61,6 +61,19 @@ router.post("/register", urlencodedParser, function(request, response) {
   );
 });
 
+router.post("/logout", function(request, response) {
+  removeToken(response);
+});
+
+function removeToken(response) {
+  response.writeHead(302, {
+    "Set-Cookie": "jwt=0; Max-Age=0",
+    Location: "/"
+  });
+  console.log("User logged out"); // Change to Handlebars message to front end user
+  return response.end();
+}
+
 function createUser(name, email, password, response) {
   return user.findByMail(email).then(function(result) {
     if (result.length != 0) {
@@ -82,7 +95,7 @@ function createUser(name, email, password, response) {
           };
           const cookie = sign(userData, SECRET);
           response.writeHead(302, {
-            "Set-Cookie": `jwt=${cookie}`,
+            "Set-Cookie": `jwt=${cookie}; Max-Age: 10000`,
             Location: "/"
           });
           response.end();
