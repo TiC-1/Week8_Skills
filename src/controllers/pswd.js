@@ -1,19 +1,6 @@
 const bcrypt = require("bcryptjs");
 
 // Encrypt password
-
-// // Callback style
-// const encrypt = (clearPswd, callback) => {
-//   bcrypt.genSalt(10, (err, salt) => {
-//     if (err) {
-//       callback(err);
-//     } else {
-//       bcrypt.hash(clearPswd, salt, callback);
-//     }
-//   });
-// };
-
-// Promise style
 function encrypt(clearPswd) {
   const saltRounds = 10;
   return bcrypt
@@ -23,13 +10,6 @@ function encrypt(clearPswd) {
 }
 
 // Compare clear pswd with hash
-
-// Callback style
-// const compare = (clearPswd, hashedPswd, callback) => {
-//   bcrypt.compare(clearPswd, hashedPswd, callback);
-// };
-
-// Promise style and one line arrow function implicite return
 function compare(clearPswd, hashedPswd) {
   return bcrypt.compare(clearPswd, hashedPswd).then(result => result);
 }

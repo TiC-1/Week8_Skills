@@ -15,7 +15,7 @@ test("Test populateDb function", function(assert) {
 
 test("Test lookForMail query", function(assert) {
   usermodel
-    .findByMail("claudiu@tic.it")
+    .retrieveUserData("claudiu@tic.it")
     .then(result => {
       console.log(result);
       assert.equals(result.length, 0, "claudiu@tic.it does not exist in DB");
@@ -24,7 +24,7 @@ test("Test lookForMail query", function(assert) {
       console.log(err);
     });
   usermodel
-    .findByMail("claudio@tic.it")
+    .retrieveUserData("claudio@tic.it")
     .then(result => {
       console.log(result);
       assert.equals(result.length, 1, "claudio@tic.it exists in DB");
