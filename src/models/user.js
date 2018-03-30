@@ -8,7 +8,7 @@ const SECRET = process.env.SECRET;
 function retrieveUserData(email) {
   return db
     .query(
-      "SELECT id, username, email, password, already_known, interested_in, stared FROM users, bookmarks WHERE user_id=id AND email=$1;",
+      "SELECT id, username, email, password, already_known, interested_in, starred FROM users, bookmarks WHERE user_id=id AND email=$1;",
       [email]
     )
     .then(function(result) {

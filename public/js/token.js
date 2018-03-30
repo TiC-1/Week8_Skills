@@ -1,21 +1,21 @@
 getCookies();
 
-// Check cookies
+// Get cookies and check user status
 function getCookies() {
   var cookie = document.cookie;
   console.log(cookie);
   checkUserStatus(cookie);
 }
 
-// Check user login status and provide some stuff to the user
+// Check user login status and provide some messages
 function checkUserStatus(cookie) {
-  // Check token so see if user is logged in
   if (cookie && tokenReader(cookie).loggedin) {
-    // Print on screen "hello username !"
     document.getElementsByClassName("user")[0].innerHTML =
       "<p>Hi " +
       tokenReader(cookie).username +
-      '!</p><form class="logout_form" action="/logout" method="post" novalidate><input type="submit" role="button" class="logout_button" name="" value="Log out">';
+      "!</p><p>Your skills: " +
+      tokenReader(cookie).skills +
+      '</p><form class="logout_form" action="/logout" method="post" novalidate><input type="submit" role="button" class="logout_button" name="" value="Log out">';
   } else {
     document.getElementsByClassName("user")[0].innerHTML =
       '<ul><a href="/login"><li>Log in</li></a><a href="/register"><li>Register</li></a></ul>';

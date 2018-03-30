@@ -55,7 +55,10 @@ test("Test /login endpoint", function(assert) {
     .end(function(error, response) {
       console.log(response);
       // Improve test with assert.xxx
-      // assert.equal(response.text, JSON.stringify(["c", "c"]), "risposta test esatto!");
+      // assert.ok(
+      //   response.headers.toString().includes("'set-cookie'"),
+      //   "Response contains 'headers'"
+      // );
       assert.end();
     });
 });
