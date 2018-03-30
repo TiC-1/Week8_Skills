@@ -3,34 +3,49 @@ const router = express.Router();
 const user = require("../models/user.js");
 const bodyParser = require("body-parser");
 const pswd = require("./pswd.js");
-const { sign } = require("jsonwebtoken");
-const SECRET = process.env.SECRET;
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+// Endpoints
 
 router.get("/login", function(request, response) {
   response.render("login");
 });
 
 router.post("/login", urlencodedParser, function(request, response) {
-  verifyUser(request.body.email, request.body.password, response);
+  logUser(request.body.email, request.body.password, response);
 });
 
-function verifyUser(email, password, response) {
-  return user.findByMail(email).then(function(result) {
+router.get("/register", function(request, response) {
+  response.render("register");
+});
+
+router.post("/register", urlencodedParser, function(request, response) {
+  registerUser(
+    request.body.name,
+    request.body.email,
+    request.body.password,
+    response
+  );
+});
+
+router.post("/logout", function(request, response) {
+  logoutUser(response);
+});
+
+// Functions
+
+function logUser(email, password, response) {
+  return user.retrieveUserData(email).then(function(result) {
     if (result.length != 0) {
+      const id = result[0].id;
+      const name = result[0].username;
       const storedPassword = result[0].password;
-      const userData = {
-        id: result[0].id,
-        username: result[0].username,
-        loggedin: true
-      };
+      const skills = result[0].already_known;
       return pswd.compare(password, storedPassword).then(function(result) {
         if (result) {
-          const cookie = sign(userData, SECRET);
+          let token = user.buildCookieToken(id, name, skills);
           response.writeHead(302, {
-            "Set-Cookie": `jwt=${cookie}`,
+            "Set-Cookie": "jwt=" + token + "; Max-Age: 10000",
             Location: "/"
           });
           response.end();
@@ -48,34 +63,8 @@ function verifyUser(email, password, response) {
   });
 }
 
-router.get("/register", function(request, response) {
-  response.render("register");
-});
-
-router.post("/register", urlencodedParser, function(request, response) {
-  createUser(
-    request.body.name,
-    request.body.email,
-    request.body.password,
-    response
-  );
-});
-
-router.post("/logout", function(request, response) {
-  removeToken(response);
-});
-
-function removeToken(response) {
-  response.writeHead(302, {
-    "Set-Cookie": "jwt=0; Max-Age=0",
-    Location: "/"
-  });
-  console.log("User logged out"); // Change to Handlebars message to front end user
-  return response.end();
-}
-
-function createUser(name, email, password, response) {
-  return user.findByMail(email).then(function(result) {
+function registerUser(name, email, password, response) {
+  return user.retrieveUserData(email).then(function(result) {
     if (result.length != 0) {
       response.render("register", {
         message: { status: "error", text: "Email already exists" }
@@ -88,20 +77,24 @@ function createUser(name, email, password, response) {
           return user.create(name, email, hashedPswd);
         })
         .then(function(result) {
-          const userData = {
-            id: result,
-            username: name,
-            loggedin: true
-          };
-          const cookie = sign(userData, SECRET);
+          let token = user.buildCookieToken(result, name, bookmarks);
           response.writeHead(302, {
-            "Set-Cookie": `jwt=${cookie}; Max-Age: 10000`,
+            "Set-Cookie": "jwt=" + token + "; Max-Age: 10000",
             Location: "/"
           });
           response.end();
         });
     }
   });
+}
+
+function logoutUser(response) {
+  response.writeHead(302, {
+    "Set-Cookie": "jwt=0; Max-Age=0",
+    Location: "/"
+  });
+  console.log("User logged out"); // Change to Handlebars message to front end user
+  return response.end();
 }
 
 module.exports = router;
