@@ -1,16 +1,16 @@
 const db = require("../database/db_connection.js");
 
-// // Get user data based on his email
-// function retrieveUserData(email) {
-//   return db
-//     .query("SELECT * FROM users WHERE email = $1;", [email])
-//     .then(function(result) {
-//       return result.rows;
-//     });
-// }
-//
-// // Add new user row
-// function create(name, email, password) {
+// Retrieve user's bookmarks from his ID
+function retrieveUserBookmarks(userID) {
+  return db
+    .query("SELECT * FROM bookmarks WHERE user_id = $1;", [userID])
+    .then(function(result) {
+      return result.rows;
+    });
+}
+
+// // Add an 'already_known' skill to the current user
+// function addAlreadyKnown(userID, skillsArray) {
 //   return db
 //     .query(
 //       "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id;",
@@ -20,8 +20,7 @@ const db = require("../database/db_connection.js");
 //       return result.rows[0].id;
 //     });
 // }
-//
-// module.exports = {
-//   retrieveUserData: retrieveUserData,
-//   create: create
-// };
+
+module.exports = {
+  retrieveUserBookmarks
+};
