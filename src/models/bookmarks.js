@@ -1,26 +1,17 @@
 const db = require("../database/db_connection.js");
 
-// Retrieve user's bookmarks from his ID
-function retrieveUserBookmarks(userID) {
+// Add an 'already_known' skill to the current user
+function addAlreadyKnown(userID, skillsArray) {
   return db
-    .query("SELECT * FROM bookmarks WHERE user_id = $1;", [userID])
+    .query(
+      "UPDATE bookmarks SET already_known=$1 WHERE user_id=$2 RETURNING already_known;",
+      [skillsArray, userID]
+    )
     .then(function(result) {
-      return result.rows;
+      return result.rows[0].already_known;
     });
 }
 
-// // Add an 'already_known' skill to the current user
-// function addAlreadyKnown(userID, skillsArray) {
-//   return db
-//     .query(
-//       "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id;",
-//       [name, email, password]
-//     )
-//     .then(function(result) {
-//       return result.rows[0].id;
-//     });
-// }
-
 module.exports = {
-  retrieveUserBookmarks
+  addAlreadyKnown
 };

@@ -4,6 +4,8 @@ const db = require("../src/database/db_connection.js");
 const populateDb = require("../src/database/db_populate.js");
 const usermodel = require("../src/models/user.js");
 const userscontroller = require("../src/controllers/users.js");
+const bookmarksmodel = require("../src/models/bookmarks.js");
+const bookmarkscontroller = require("../src/controllers/bookmarks.js");
 
 test("Test populateDb function", function(assert) {
   populateDb(function() {
@@ -13,20 +15,20 @@ test("Test populateDb function", function(assert) {
   });
 });
 
-test("Test lookForMail query", function(assert) {
+test("Test retrieveUserData query", function(assert) {
   usermodel
-    .retrieveUserData("claudiu@tic.it")
-    .then(result => {
-      console.log(result);
-      assert.equals(result.length, 0, "claudiu@tic.it does not exist in DB");
+    .retrieveUserData("pipo@gmail.com")
+    .then(function(result) {
+      // console.log(result);
+      assert.equals(result.length, 0, "pipo@gmail.com does not exist in DB");
     })
     .catch(err => {
       console.log(err);
     });
   usermodel
     .retrieveUserData("claudio@tic.it")
-    .then(result => {
-      console.log(result);
+    .then(function(result) {
+      // console.log(result);
       assert.equals(result.length, 1, "claudio@tic.it exists in DB");
       assert.end();
     })
@@ -38,8 +40,8 @@ test("Test lookForMail query", function(assert) {
 test("Test create user query", function(assert) {
   return usermodel
     .create("John Dow", "john@domain.com", "MyPswD")
-    .then(result => {
-      console.log(result);
+    .then(function(result) {
+      // console.log(result);
       assert.equal(result, 6, "A new user has been added with id:6");
       assert.end();
     })
@@ -53,19 +55,73 @@ test("Test /login endpoint", function(assert) {
     .post("/login")
     .send("email=claudio@tic.it&password=claudio")
     .end(function(error, response) {
-      console.log(response);
-      // Improve test with assert.xxx
-      // assert.ok(
-      //   response.headers.toString().includes("'set-cookie'"),
-      //   "Response contains 'headers'"
-      // );
+      // console.log(response);
+      assert.ok(
+        JSON.stringify(response).includes("set-cookie"),
+        "Response of login contains a 'set-cookie' header"
+      );
       assert.end();
     });
 });
 
-// Add test of /register endpoint
+test("Test /register endpoint", function(assert) {
+  supertest(userscontroller)
+    .post("/register")
+    .send("name=Christopher Columbus&email=chris@tic.it&password=America")
+    .end(function(error, response) {
+      // console.log(response);
+      assert.ok(
+        JSON.stringify(response).includes("set-cookie"),
+        "Response contains a 'set-cookie' header"
+      );
+      assert.end();
+    });
+});
 
-// Add test of /logout endpoint
+test("Test /logout endpoint", function(assert) {
+  supertest(userscontroller)
+    .post("/logout")
+    .end(function(error, response) {
+      // console.log(response);
+      assert.ok(
+        JSON.stringify(response).includes("jwt=0; Max-Age=0"),
+        "Response headers contain 'jwt=0'"
+      );
+      assert.end();
+    });
+});
+
+test("Test addAlreadyKnown query", function(assert) {
+  bookmarksmodel
+    .addAlreadyKnown(1, "[100, 101, 102]")
+    .then(function(result) {
+      let skills = JSON.stringify(result);
+      // console.log(skills);
+      assert.equals(
+        skills,
+        "[100,101,102]",
+        "User's 1 skills have been updated"
+      );
+      assert.end();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+test("Test /known endpoint", function(assert) {
+  supertest(bookmarkscontroller)
+    .post("/known")
+    .send("userID=1&skillID=99")
+    .end(function(error, response) {
+      console.log(response);
+      // assert.ok(
+      //   JSON.stringify(response).includes("set-cookie"),
+      //   "Response contains a 'set-cookie' header"
+      // );
+      assert.end();
+    });
+});
 
 test("End pool connection", function(assert) {
   db.end(function() {

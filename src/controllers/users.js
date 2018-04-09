@@ -77,7 +77,7 @@ function registerUser(name, email, password, response) {
           return user.create(name, email, hashedPswd);
         })
         .then(function(result) {
-          let token = user.buildCookieToken(result, name, bookmarks);
+          let token = user.buildCookieToken(result, name);
           response.writeHead(302, {
             "Set-Cookie": "jwt=" + token + "; Max-Age: 10000",
             Location: "/"
