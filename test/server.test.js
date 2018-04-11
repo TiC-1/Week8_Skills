@@ -7,7 +7,9 @@ const userscontroller = require("../src/controllers/users.js");
 const bookmarksmodel = require("../src/models/bookmarks.js");
 const bookmarkscontroller = require("../src/controllers/bookmarks.js");
 
-test("Test populateDb function", function(assert) {
+// TEST QUERIES (models) *****************************************************
+
+test("Test populateDb queries", function(assert) {
   populateDb(function() {
     assert.ok(true, "populateDb function has been executed");
     assert.ok(true, "datatabase should have been populated with provided data");
@@ -50,44 +52,20 @@ test("Test create user query", function(assert) {
     });
 });
 
-test("Test /login endpoint", function(assert) {
-  supertest(userscontroller)
-    .post("/login")
-    .send("email=claudio@tic.it&password=claudio")
-    .end(function(error, response) {
-      // console.log(response);
+test("Test retrieveUserBookmarks query", function(assert) {
+  bookmarksmodel
+    .retrieveUserBookmarks(2)
+    .then(function(result) {
+      let bookmarks = JSON.stringify(result);
+      // console.log(bookmarks);
       assert.ok(
-        JSON.stringify(response).includes("set-cookie"),
-        "Response of login contains a 'set-cookie' header"
+        bookmarks.includes("[1,2,3]"),
+        "User's 2 skills have been retrieved"
       );
       assert.end();
-    });
-});
-
-test("Test /register endpoint", function(assert) {
-  supertest(userscontroller)
-    .post("/register")
-    .send("name=Christopher Columbus&email=chris@tic.it&password=America")
-    .end(function(error, response) {
-      // console.log(response);
-      assert.ok(
-        JSON.stringify(response).includes("set-cookie"),
-        "Response contains a 'set-cookie' header"
-      );
-      assert.end();
-    });
-});
-
-test("Test /logout endpoint", function(assert) {
-  supertest(userscontroller)
-    .post("/logout")
-    .end(function(error, response) {
-      // console.log(response);
-      assert.ok(
-        JSON.stringify(response).includes("jwt=0; Max-Age=0"),
-        "Response headers contain 'jwt=0'"
-      );
-      assert.end();
+    })
+    .catch(err => {
+      console.log(err);
     });
 });
 
@@ -109,19 +87,64 @@ test("Test addAlreadyKnown query", function(assert) {
     });
 });
 
+// TEST ENDPOINTS *******************************************************
+
+test("Test /login endpoint", function(assert) {
+  supertest(userscontroller)
+    .post("/login")
+    .send("email=claudio@tic.it&password=claudio")
+    .end(function(error, response) {
+      // console.log(response);
+      assert.ok(
+        JSON.stringify(response).includes("set-cookie"),
+        "Response header contains a 'set-cookie' with coded jwt"
+      );
+      assert.end();
+    });
+});
+
+test("Test /register endpoint", function(assert) {
+  supertest(userscontroller)
+    .post("/register")
+    .send("name=Christopher Columbus&email=chris@tic.it&password=America")
+    .end(function(error, response) {
+      // console.log(response);
+      assert.ok(
+        JSON.stringify(response).includes("set-cookie"),
+        "Response header contains a 'set-cookie' with coded jwt"
+      );
+      assert.end();
+    });
+});
+
+test("Test /logout endpoint", function(assert) {
+  supertest(userscontroller)
+    .post("/logout")
+    .end(function(error, response) {
+      // console.log(response);
+      assert.ok(
+        JSON.stringify(response).includes("jwt=0; Max-Age=0"),
+        "Response header contains a 'set-cookie' with 'jwt=0'"
+      );
+      assert.end();
+    });
+});
+
 test("Test /known endpoint", function(assert) {
   supertest(bookmarkscontroller)
     .post("/known")
     .send("userID=1&skillID=99")
     .end(function(error, response) {
       console.log(response);
-      // assert.ok(
-      //   JSON.stringify(response).includes("set-cookie"),
-      //   "Response contains a 'set-cookie' header"
-      // );
+      assert.ok(
+        JSON.stringify(response).includes("100,101, 102, 99"),
+        "User's 1 skills has been updated from enpoint"
+      );
       assert.end();
     });
 });
+
+// OTHERS TESTS *******************************************************
 
 test("End pool connection", function(assert) {
   db.end(function() {

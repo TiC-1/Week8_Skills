@@ -5,19 +5,20 @@ const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.post("/known", urlencodedParser, function(request, response) {
-  addKnownSkill(request.body.userID, request.body.skillID, response);
+  // console.log(request.body.userID, request.body.skillID);
+  addKnownSkill(request.body.userID, request.body.skillID).then(function(
+    result
+  ) {
+    response.end();
+  });
 });
 
-function addKnownSkill(userID, skillID, response) {
+function addKnownSkill(userID, skillID) {
   return bookmarks.retrieveUserBookmarks(userID).then(function(result) {
-    console.log(result);
-    let newSkills = result.push(skillID);
-    console.log(newSkills);
-    return newSkills.then(function(result) {
-      return bookmarks.addAlreadyKnown(userID, result).then(function(result) {
-        console.log(result);
-      });
-    });
+    result = result[0].already_known;
+    result.push(Number(skillID));
+    result = "[" + result.toString() + "]";
+    bookmarks.addAlreadyKnown(userID, result);
   });
 }
 

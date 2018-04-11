@@ -1,5 +1,16 @@
 const db = require("../database/db_connection.js");
 
+function retrieveUserBookmarks(userID) {
+  return db
+    .query(
+      "SELECT already_known, interested_in, starred FROM bookmarks WHERE user_id=$1;",
+      [userID]
+    )
+    .then(function(result) {
+      return result.rows;
+    });
+}
+
 // Add an 'already_known' skill to the current user
 function addAlreadyKnown(userID, skillsArray) {
   return db
@@ -13,5 +24,6 @@ function addAlreadyKnown(userID, skillsArray) {
 }
 
 module.exports = {
+  retrieveUserBookmarks,
   addAlreadyKnown
 };
