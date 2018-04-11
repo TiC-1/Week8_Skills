@@ -7,7 +7,7 @@ INSERT INTO users (username, email, password) VALUES ('Claudio', 'claudio@tic.it
 INSERT INTO users (username, email, password) VALUES ('Giulia', 'giulia@tic.it', '$2a$10$pgzgeR9rC55BIlLdF/Y.xOESABUA3qhtfy7YPCgyxpgM2KwQwijgq');
 
 
-INSERT INTO bookmarks (user_id, already_known, interested_in, starred) VALUES
+INSERT INTO bookmarks (user_id, skills, interests, favorites) VALUES
 (1, '[1,2,3]','[4,5,6]','[7,8,9]'),
 (2, '[4,5,6]','[1,2,3]','[2,5,6]'),
 (3, '[2,5,6]','[2,5,6]','[4,5,6]'),

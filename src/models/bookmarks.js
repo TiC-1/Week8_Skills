@@ -1,29 +1,31 @@
 const db = require("../database/db_connection.js");
 
-function retrieveUserBookmarks(userID) {
-  return db
-    .query(
-      "SELECT already_known, interested_in, starred FROM bookmarks WHERE user_id=$1;",
-      [userID]
-    )
-    .then(function(result) {
-      return result.rows;
-    });
-}
+// DEPRECATED
+// // Retrieve user's bookmarks
+// function retrieveUserBookmarks(userID) {
+//   return db
+//     .query(
+//       "SELECT skills, interests, favorites FROM bookmarks WHERE user_id=$1;",
+//       [userID]
+//     )
+//     .then(function(result) {
+//       return result.rows;
+//     });
+// }
 
-// Add an 'already_known' skill to the current user
-function addAlreadyKnown(userID, skillsArray) {
+// Upade user's skills
+function updateSkills(userID, skills) {
   return db
     .query(
-      "UPDATE bookmarks SET already_known=$1 WHERE user_id=$2 RETURNING already_known;",
-      [skillsArray, userID]
+      "UPDATE bookmarks SET skills=$1 WHERE user_id=$2 RETURNING skills;",
+      [JSON.stringify(skills), userID]
     )
     .then(function(result) {
-      return result.rows[0].already_known;
+      return result.rows[0].skills;
     });
 }
 
 module.exports = {
-  retrieveUserBookmarks,
-  addAlreadyKnown
+  // retrieveUserBookmarks,
+  updateSkills
 };

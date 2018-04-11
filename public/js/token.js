@@ -3,7 +3,7 @@ getCookies();
 // Get cookies and check user status
 function getCookies() {
   var cookie = document.cookie;
-  console.log(cookie);
+  console.log("cookie = ", cookie);
   checkUserStatus(cookie);
 }
 
@@ -13,8 +13,8 @@ function checkUserStatus(cookie) {
     document.getElementsByClassName("user")[0].innerHTML =
       "<p>Hi " +
       tokenReader(cookie).username +
-      "!</p><p>Your skills: " +
-      tokenReader(cookie).skills +
+      "!</p><p>Your bookmarks: " +
+      JSON.stringify(tokenReader(cookie).bookmarks) +
       '</p><form class="logout_form" action="/logout" method="post" novalidate><input type="submit" role="button" class="logout_button" name="" value="Log out">';
   } else {
     document.getElementsByClassName("user")[0].innerHTML =

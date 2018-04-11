@@ -5,6 +5,7 @@ const exphbs = require("express-handlebars");
 const server = express();
 
 // SET PORT
+// Use 3000 when in local
 const PORT = process.env.PORT || 3000;
 
 // SET HANDLEBARS

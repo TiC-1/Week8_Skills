@@ -11,9 +11,9 @@ CREATE TABLE users (
 
 CREATE TABLE bookmarks (
   user_id INTEGER NOT NULL,
-  already_known json,
-  interested_in json,
-  starred json,
+  skills json,
+  interests json,
+  favorites json,
   CONSTRAINT fk_bookmarks_user_id FOREIGN KEY (user_id) REFERENCES users (id)
 );
 

@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const user = require("../models/user.js");
-const bodyParser = require("body-parser");
+const cookies = require("../models/cookies.js");
 const pswd = require("./pswd.js");
+const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // Endpoints
@@ -37,13 +38,18 @@ router.post("/logout", function(request, response) {
 function logUser(email, password, response) {
   return user.retrieveUserData(email).then(function(result) {
     if (result.length != 0) {
+      // console.log(result);
       const id = result[0].id;
       const name = result[0].username;
       const storedPassword = result[0].password;
-      const skills = result[0].already_known;
+      const bookmarks = {
+        skills: result[0].skills,
+        interests: result[0].interests,
+        favorites: result[0].favorites
+      };
       return pswd.compare(password, storedPassword).then(function(result) {
         if (result) {
-          let token = user.buildCookieToken(id, name, skills);
+          let token = cookies.buildJWT(id, name, bookmarks);
           response.writeHead(302, {
             "Set-Cookie": "jwt=" + token + "; Max-Age: 10000",
             Location: "/"
@@ -77,7 +83,7 @@ function registerUser(name, email, password, response) {
           return user.create(name, email, hashedPswd);
         })
         .then(function(result) {
-          let token = user.buildCookieToken(result, name);
+          let token = cookies.buildJWT(result, name);
           response.writeHead(302, {
             "Set-Cookie": "jwt=" + token + "; Max-Age: 10000",
             Location: "/"
