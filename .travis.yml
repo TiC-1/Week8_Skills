@@ -7,7 +7,6 @@ before_script:
   - psql -c 'CREATE DATABASE skillsdb;' -U postgres
 env:
   - DATABASE_URL=postgres://postgres@localhost:5432/skillsdb
-  - SECRET=kjeqf765HGF543543kjhdHGF098
 before_install:
   - pip install --user codecov
 after_success:
