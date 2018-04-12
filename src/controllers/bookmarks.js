@@ -12,11 +12,14 @@ const cookieParser = require("cookie-parser");
 router.use(cookieParser());
 
 router.post("/known", urlencodedParser, function(request, response) {
+  // Get cookie and decode JWT
   let token = request.cookies.jwt;
   payload = cookiesmodel.readJWT(token);
+  // build user's data from payload
   let id = payload.id;
   let name = payload.username;
   let skills = payload.bookmarks.skills;
+  // Add new skill to user's bookmarks
   skills.push(Number(request.body.skillID));
   let bookmarks = {
     skills: skills,
@@ -24,16 +27,16 @@ router.post("/known", urlencodedParser, function(request, response) {
     favorites: payload.bookmarks.favorites
   };
   // console.log(bookmarks);
-  return bookmarksmodel
-    .updateSkills(id, bookmarks.skills)
-    .then(function(result) {
-      let token = cookiesmodel.buildJWT(id, name, bookmarks);
-      response.writeHead(302, {
-        "Set-Cookie": "jwt=" + token + "; Max-Age: 10000",
-        Location: "/"
-      });
-      response.end();
+  // update user's skills in database
+  return bookmarksmodel.updateSkills(id, skills).then(function(result) {
+    // build jwt with updated skills and send cookie
+    let token = cookiesmodel.buildJWT(id, name, bookmarks);
+    response.writeHead(302, {
+      "Set-Cookie": "jwt=" + token + "; Max-Age: 10000",
+      Location: "/"
     });
+    response.end();
+  });
 });
 
 module.exports = router;
