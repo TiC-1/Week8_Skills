@@ -4,10 +4,10 @@ node_js:
 services:
   - postgresql
 before_script:
-  - psql -c 'CREATE DATABASE js_skills;' -U postgres
+  - psql -c 'CREATE DATABASE skillsdb;' -U postgres
 env:
-  - DATABASE_URL=postgres://postgres@localhost:5432/js_skills
-  - SECRET=khgdsj4567876bjhgdf
+  - DATABASE_URL=postgres://postgres@localhost:5432/skillsdb
+  - SECRET=kjeqf765HGF543543kjhdHGF098
 before_install:
   - pip install --user codecov
 after_success:
