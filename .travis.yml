@@ -4,9 +4,9 @@ node_js:
 services:
   - postgresql
 before_script:
-  - psql -c 'CREATE DATABASE cryptofyck;' -U postgres
+  - psql -c 'CREATE DATABASE js_skills;' -U postgres
 env:
-  - DATABASE_URL=postgres://postgres@localhost:5432/cryptofyck
+  - DATABASE_URL=postgres://js_skills:js_skills@localhost:5432/js_skills
 before_install:
   - pip install --user codecov
 after_success:
