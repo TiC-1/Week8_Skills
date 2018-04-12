@@ -6,7 +6,7 @@ services:
 before_script:
   - psql -c 'CREATE DATABASE js_skills;' -U postgres
 env:
-  - DATABASE_URL=postgres://js_skills:js_skills@localhost:5432/js_skills
+  - DATABASE_URL=postgres://postgres@localhost:5432/js_skills
 before_install:
   - pip install --user codecov
 after_success:
