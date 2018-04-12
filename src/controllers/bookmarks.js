@@ -13,7 +13,9 @@ router.use(cookieParser());
 
 router.post("/known", urlencodedParser, function(request, response) {
   // Get cookie and decode JWT
-  let token = request.cookies.jwt;
+  // let token = request.cookies.jwt;
+  let token = response.locals.cookies;
+  console.log("QQQQ", token);
   payload = cookiesmodel.readJWT(token);
   // build user's data from payload
   let id = payload.id;

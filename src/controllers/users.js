@@ -60,6 +60,13 @@ function logUser(email, password, response) {
             "Set-Cookie": "jwt=" + token + "; Max-Age: 10000",
             Location: "/"
           });
+
+          // response.render("user", {
+          //   username: "<p>Hi " + name + "<p>",
+          //   bookmarks: "<p>Your bookmarks: " + bookmarks + "</p>",
+          //   form:
+          //     '<form class="logout_form" action="/logout" method="post" novalidate><input type="submit" role="button" class="logout_button" name="" value="Log out">"'
+          // });
           response.end();
         } else {
           // password doesn't exist

@@ -5,6 +5,12 @@ const bookmarkscontroller = require("./controllers/bookmarks.js");
 
 router.get("/", function(request, response) {
   response.render("home");
+  // response.render("home", {
+  //   user: {
+  //     form:
+  //       '<ul><a href="/login"><li>Log in</li></a><a href="/register"><li>Register</li></a></ul>'
+  //   }
+  // });
 });
 
 router.use(userscontroller);
