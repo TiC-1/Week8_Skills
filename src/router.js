@@ -10,5 +10,6 @@ router.use(userscontroller);
 
 router.use(express.static(__dirname + "/../public"));
 router.use("/js", express.static(__dirname + "/../bower_components"));
+router.use("/css", express.static(__dirname + "/../bower_components"));
 
 module.exports = router;
