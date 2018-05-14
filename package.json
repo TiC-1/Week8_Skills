@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/TiC-1/Week7_cryptoconverter#readme",
   "dependencies": {
-    "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "env2": "^2.2.0",
