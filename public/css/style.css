@@ -127,3 +127,19 @@ footer a:hover {
   overflow: auto;
   box-sizing: border-box;
 }
+
+.node-content label {
+  background-color: orange;
+  width: 100%;
+  display: block;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px black;
+  cursor: pointer;
+}
+
+.node-content label + p {
+  margin-top: 15px;
+}
