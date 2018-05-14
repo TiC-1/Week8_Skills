@@ -48,26 +48,39 @@ function displayLoginWarning(name, email, password1, password2) {
 
 // Check some input values and add infos to user global warning message
 function buildLoginWarning(name, email, password1, password2) {
+  // Initialize warnings
   warning = [];
+  document.getElementById("name").style.borderColor = "inherit";
+  document.getElementById("email").style.borderColor = "inherit";
+  document.getElementById("password1").style.borderColor = "inherit";
+  document.getElementById("password2").style.borderColor = "inherit";
+  // Check entered values
   if (name == "") {
     warning.push("Enter name");
+    document.getElementById("name").style.borderColor = "orange";
   }
   if (name.match(/\W/gi)) {
-    warning.push(
-      "Name musn't contain special characters (only letters, digits, underscore and no space)"
-    );
+    warning.push("Name must contain only letters, digits and underscore");
+    document.getElementById("name").style.borderColor = "orange";
   }
   if (email != email.match(/(\w|\.|-)+@+\w+\.+[a-z]+/gi)) {
     warning.push("Enter a valid email");
+    document.getElementById("email").style.borderColor = "orange";
   }
   if (password1 == "") {
     warning.push("Enter password");
+    document.getElementById("password1").style.borderColor = "orange";
   }
   if (password1 != "" && (password1.length < 6 || password1.length > 20)) {
     warning.push("Password length must be between 6 and 20 characters");
+    document.getElementById("password1").style.borderColor = "orange";
+  }
+  if (password2 == "") {
+    document.getElementById("password2").style.borderColor = "orange";
   }
   if (password1 != password2) {
     warning.push("Passwords don't match");
+    document.getElementById("password2").style.borderColor = "orange";
   }
   return warning;
 }

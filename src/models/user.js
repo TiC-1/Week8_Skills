@@ -1,9 +1,16 @@
 const db = require("../database/db_connection.js");
+const { sign } = require("jsonwebtoken");
+const SECRET = process.env.SECRET;
+
+// QUERIES
 
 // Get user data based on his email
-function findByMail(email) {
+function retrieveUserData(email) {
   return db
-    .query("SELECT * FROM users WHERE email = $1;", [email])
+    .query(
+      "SELECT id, username, email, password, already_known, interested_in, starred FROM users, bookmarks WHERE user_id=id AND email=$1;",
+      [email]
+    )
     .then(function(result) {
       return result.rows;
     });
@@ -21,7 +28,22 @@ function create(name, email, password) {
     });
 }
 
+// OTHER THAN QUERIES
+
+// Build cookie token with user's data
+function buildCookieToken(id, name, skills) {
+  let userData = {
+    id: id,
+    username: name,
+    skills: skills,
+    loggedin: true
+  };
+  const token = sign(userData, SECRET);
+  return token;
+}
+
 module.exports = {
-  findByMail: findByMail,
-  create: create
+  retrieveUserData,
+  create,
+  buildCookieToken
 };
