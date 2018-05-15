@@ -17,6 +17,8 @@ var linkHorizontal = d3
   .x(d => d.y)
   .y(d => d.x);
 
+var activeNode = null;
+
 d3.json("/datatree.json").then(function(data) {
   root = d3.hierarchy(data);
   root.x0 = height / 2;
@@ -41,7 +43,17 @@ function update() {
   var nodeEnter = node
     .enter()
     .append("svg:g")
-    .attr("class", "node")
+    .attr("class", "node");
+
+  nodeEnter
+    .attr("transform", d => {
+      if (activeNode) {
+        return "translate(" + activeNode.y + "," + activeNode.x + ")";
+      } else {
+        return "translate(" + root.y0 + "," + root.x0 + ")";
+      }
+    })
+    .transition()
     .attr("transform", d => "translate(" + d.y + "," + d.x + ")");
 
   nodeEnter
@@ -53,12 +65,14 @@ function update() {
         : "#fff";
     })
     .on("click", function(d) {
+      activeNode = { x: d.x, y: d.y };
       toggleChildren(d);
       update();
     });
 
-  nodeEnter
+  var textLabelEnter = nodeEnter
     .append("svg:text")
+    .attr("style", "font-size: 0")
     .attr("dy", ".35em")
     .attr("text-anchor", function(d) {
       return d.children || d.hiddenChildren ? "end" : "start";
@@ -71,6 +85,8 @@ function update() {
       toggleContent(d);
       update();
     });
+
+  textLabelEnter.transition().attr("style", "font-size: 1em");
 
   var nodeContentEnter = nodeContent
     .enter()
@@ -98,7 +114,7 @@ function update() {
     .insert("path", "g")
     .attr("class", "link")
     .attr("d", function(d) {
-      var o = { x: root.x0, y: root.y0 };
+      var o = { x: d.source.x, y: d.source.y };
       return linkHorizontal({ source: o, target: o });
     })
     .transition()
@@ -131,7 +147,7 @@ function update() {
   var nodeExit = node
     .exit()
     .transition()
-    .attr("transform", d => "translate(" + root.y + "," + root.x + ")")
+    .attr("transform", d => "translate(" + d.parent.y + "," + d.parent.x + ")")
     .remove();
 
   nodeExit.select("circle").attr("r", 1e-6);
@@ -142,7 +158,7 @@ function update() {
     .exit()
     .transition()
     .attr("d", function(d) {
-      var o = { x: root.x, y: root.y };
+      var o = { x: d.source.x, y: d.source.y };
       return linkHorizontal({ source: o, target: o });
     })
     .remove();
